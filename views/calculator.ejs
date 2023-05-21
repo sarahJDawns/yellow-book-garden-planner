@@ -1,0 +1,69 @@
+<%- include('partials/header') -%>
+
+<!--This is in bootstrap - need to change to tailwind-->
+
+<!-- table -->
+<section id="spacing" class="bg-info text-light mt-0 p-5 p-lg-5 pt-lg-5">
+  <div class="container">
+    <div class="pb-5">
+      <h3 class="mb-3 mb-md-0 text-center py-5">Spacing Table</h3>
+      <div id="table"></div>
+    </div>
+  </div>
+</section>
+<!-- calculator -->
+<section id="calculator" class="bg-secondary text-light text-center p-5 p-lg-5 pt-lg-5">
+  <div class="container">
+    <div class="text-center d-flex align-items-center justify-content-center d-sm-flex h1 pt-5 pb-5">
+      <h3 class="px-2 pt-2">Seed Calculator</h3>
+    </div>
+    <div>
+      <div class="d-sm-flex align-items-center justify-content-around">
+        <div>
+          <p class="lead pt-3">Inches between seeds</p>
+          <input id="in-between" type="text" class="form-control" placeholder="Enter Inches" />
+        </div>
+        <div>
+          <p class="lead pt-3">Length of row</p>
+          <input id="length" type="text" class="form-control" placeholder="Enter Feet" />
+        </div>
+        <div>
+          <p class="lead pt-3">Number of rows</p>
+          <input id="rows" type="text" class="form-control" placeholder="Enter Total Rows" />
+        </div>
+      </div>
+      <button id="calculate" class="btn btn-dark my-5 text-uppercase">
+        Calculate
+      </button>
+      <div class="pb-5">
+        <p class="lead pb-3">Total seeds or plants</p>
+        <p id="calc-display" class="fs-5 fw-bold text-uppercase"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- plant hardiness zone -->
+<section id="plant" class="bg-info text-light text-center p-5 p-lg-5 pt-lg-5">
+  <div class="container">
+    <div class="text-center d-flex align-items-center justify-content-center d-sm-flex h1 pt-5 pb-5">
+      <h3 class="px-2 pt-2">Plant Hardiness Zone</h3>
+    </div>
+    <div>
+      <div class="d-sm-flex align-items-center justify-content-around">
+        <div>
+          <p class="lead pt-3">Find your zone</p>
+          <input id="code" type="text" class="form-control" placeholder="Enter Zip Code" />
+        </div>
+      </div>
+      <button id="zone" class="btn btn-dark my-5 text-uppercase">
+        Find
+      </button>
+      <div class="pb-5">
+        <p class="lead pb-3">You are in zone</p>
+        <p id="zone-display" class="fs-5 fw-bold text-uppercase"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') -%>
