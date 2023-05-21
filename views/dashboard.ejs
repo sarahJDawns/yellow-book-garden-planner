@@ -1,25 +1,37 @@
 <%- include('partials/header') -%>
-<div class="flex flex-col md:ml-8">
-  <p class="text-slate-700 my-3"><strong>User Name</strong>: <%= user.userName %></p>
-  <p class="text-slate-700 my-3"><strong>Email</strong>: <%= user.email %></p>
-  <a class="mt-16 p-3 px-6 font-bold text-slate-100 bg-cyan-600 rounded-full baseline text-center hover:bg-cyan-700 sm:mt-3 md:mt-3" href="/deleteAccount">Delete Account</a>
-</div>
-<div class="flex flex-col mb-8 mt-15 md:mr-8">
-  <a href="/logout" class="mt-8 p-3 px-6 pt-2 text-center font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700">Logout</a>
-  <a class="mt-5 p-3 px-6 pt-2 font-bold text-slate-100 bg-cyan-600 rounded-full hover:bg-cyan-700" href="/dashboard">Go to dashboard</a>
+
+<div class="bg-slate-100 flex flex-col mx-auto p-6 ">
+  <div class="container flex flex-col justify-center items-center mx-auto p-6 md:w-2/3">
+    <div class="container flex flex-col justify-between mb-8 sm:flex-row">
+      <div class="flex flex-col md:ml-8">
+        <p class="text-slate-700 my-3"><strong>User Name</strong>: <%= user.userName %></p>
+        <p class="text-slate-700 my-3"><strong>Email</strong>: <%= user.email %></p>
+        <a class="mt-16 p-3 px-6 font-bold text-slate-100 bg-cyan-600 rounded-full baseline text-center hover:bg-cyan-700 sm:mt-3 md:mt-3" href="/delete-account">Delete Account</a>
+      </div>
+      <div class="flex flex-col mb-8 mt-15 md:mr-8">
+        <a href="/logout" class="mt-8 p-3 px-6 pt-2 text-center font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700">Logout</a>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="sidebar">
   <!-- Static sidebar menu -->
   <ul>
-    <li><a href="/calculator">Calculator</a></li>
-    <li><a href="/expenses">Expenses</a></li>
-    <li><a href="/kanban">Kanban</a></li>
-    <li><a href="/notes">Notes</a></li>
-    <li><a href="/planner">Planner</a></li>
+    <li><a class="sidebar-link" href="/calculator">Calculator</a></li>
+    <li><a class="sidebar-link" href="/expenses">Expenses</a></li>
+    <li><a class="sidebar-link" href="/kanban">Kanban</a></li>
+    <li><a class="sidebar-link" href="/notes">Notes</a></li>
+    <li><a class="sidebar-link" href="/planner">Planner</a></li>
   </ul>
 </div>
 <div id="content">
   <!-- Content will be loaded dynamically here -->
 </div>
+<button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-purple-600 hover:bg-purple-700 text-slate-100 text-lg font-semibold transition-colors duration-300">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+    <path d="M12 4l8 8h-6v8h-4v-8H4l8-8z" />
+  </svg>
+  <span class="sr-only">Go to top</span>
+</button>
 
 <%- include('partials/footer') -%>

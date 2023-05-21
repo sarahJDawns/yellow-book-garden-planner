@@ -6,7 +6,7 @@ const postsController = require("../controllers/posts");
 const { ensureAuth } = require("../middleware/auth");
 
 router.get("/", homeController.getIndex);
-router.get("/profile", ensureAuth, postsController.getProfile);
+router.get("/dashboard", ensureAuth, postsController.getDashboard);
 
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);

@@ -11,6 +11,7 @@ const connectDB = require("./config/database");
 const cors = require("cors");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
+const dashboardRoutes = require("./routes/dashboard");
 const PORT = process.env.PORT || 2121;
 
 require("dotenv").config({ path: "./config/.env" });
@@ -48,6 +49,7 @@ app.use(flash());
 
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
+app.use("/", dashboardRoutes);
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server is running on port ${PORT}, better go catch it!`);
