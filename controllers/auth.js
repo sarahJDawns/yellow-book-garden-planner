@@ -2,7 +2,6 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 const Post = require("../models/Post");
-const Comment = require("../models/Comment");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -136,7 +135,6 @@ exports.postDeleteAccount = async (req, res) => {
 
   try {
     await Post.deleteMany({ user: req.user._id });
-    await Comment.deleteMany({ user: req.user._id });
     await User.deleteOne({ _id: req.user._id });
     console.log("Deleted User");
     req.flash("info", { msg: "Your account has been deleted." });

@@ -1,6 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const Comment = require("../models/Comment");
 const mongoose = require("mongoose");
 
 module.exports = {
@@ -32,19 +31,10 @@ module.exports = {
       const posts = await Post.findById(req.params.id).populate({
         path: "user",
       });
-      const comments = await Comment.find({ post: req.params.id })
-        .sort({ createdAt: "asc" })
-        .populate({
-          path: "user",
-          match: { username: req.user.username },
-        })
-        .lean();
-      console.log(comments);
       console.log(posts);
       res.render("post.ejs", {
         post: posts,
         user: req.user,
-        comments: comments,
       });
     } catch (err) {
       console.log(err);
