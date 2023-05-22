@@ -1,12 +1,12 @@
 const cloudinary = require("../middleware/cloudinary");
-const Note = require("../models/Note");
+const Notes = require("../models/Notes");
 const mongoose = require("mongoose");
 
 module.exports = {
-  getDashboard: async (req, res) => {
+  getProfile: async (req, res) => {
     console.log(req.user);
     try {
-      const notes = await Note.find({ user: req.user.id }).populate({
+      const notes = await Notes.find({ user: req.user.id }).populate({
         path: "user",
         match: { username: req.user.username },
       });
@@ -15,21 +15,20 @@ module.exports = {
       console.log(err);
     }
   },
-  getNote: async (req, res) => {
+
+  getNotes: async (req, res) => {
     try {
-      const notes = await Note.findById(req.params.id).populate({
+      const notes = await Notes.find({ user: req.user._id }).populate({
         path: "user",
+        match: { username: req.user.username },
       });
-      console.log(notes);
-      res.render("notes.ejs", {
-        note: notes,
-        user: req.user,
-      });
+      res.render("notes.ejs", { notes: notes, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
-  createNote: async (req, res) => {
+
+  createNotes: async (req, res) => {
     try {
       let image = undefined;
       let cloudinaryId = undefined;
@@ -45,7 +44,7 @@ module.exports = {
         return res.redirect("/notes");
       }
 
-      await Note.create({
+      await Notes.create({
         title: title,
         image: image,
         cloudinaryId: cloudinaryId,
@@ -56,18 +55,21 @@ module.exports = {
       res.redirect("/notes");
     } catch (err) {
       console.log(err);
-      req.flash("errors", { msg: "Failed to add note" });
+      req.flash("errors", { msg: "Failed to add note!" });
       res.redirect("/notes");
     }
   },
-  deleteNote: async (req, res) => {
+
+  deleteNotes: async (req, res) => {
     try {
-      let note = await Note.findOneAndDelete({ _id: req.params.id });
+      const note = await Notes.findById(req.params.id);
+
       await cloudinary.uploader.destroy(note.cloudinaryId);
-      await Note.remove({ _id: req.params.id });
+      await Notes.deleteOne({ _id: req.params.id });
       console.log("Deleted Note");
       res.redirect("/notes");
     } catch (err) {
+      console.log(err);
       res.redirect("/notes");
     }
   },

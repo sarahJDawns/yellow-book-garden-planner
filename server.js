@@ -10,7 +10,7 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const cors = require("cors");
 const mainRoutes = require("./routes/main");
-const postRoutes = require("./routes/posts");
+const notesRoutes = require("./routes/notes");
 const dashboardRoutes = require("./routes/dashboard");
 const PORT = process.env.PORT || 2121;
 
@@ -48,7 +48,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.use("/", mainRoutes);
-app.use("/post", postRoutes);
+app.use("/notes", notesRoutes);
 app.use("/", dashboardRoutes);
 
 app.listen(process.env.PORT || PORT, () => {

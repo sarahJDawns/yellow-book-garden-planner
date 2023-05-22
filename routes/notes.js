@@ -4,10 +4,10 @@ const upload = require("../middleware/multer");
 const notesController = require("../controllers/notes");
 const { ensureAuth } = require("../middleware/auth");
 
-router.get("/:id", ensureAuth, notesController.getNote);
+router.get("/", ensureAuth, notesController.getNotes);
 
-router.post("/createNote", upload.single("file"), notesController.createNote);
+router.post("/createNotes", upload.single("file"), notesController.createNotes);
 
-router.delete("/deleteNote/:id", notesController.deleteNote);
+router.delete("/deleteNotes/:id", notesController.deleteNotes);
 
 module.exports = router;

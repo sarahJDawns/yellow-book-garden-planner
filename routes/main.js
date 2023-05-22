@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
-const postsController = require("../controllers/posts");
+const notesController = require("../controllers/notes");
 const { ensureAuth } = require("../middleware/auth");
 
 router.get("/", homeController.getIndex);
-router.get("/dashboard", ensureAuth, postsController.getDashboard);
+router.get("/dashboard", ensureAuth, notesController.getProfile);
 
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
