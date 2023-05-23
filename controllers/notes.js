@@ -3,26 +3,13 @@ const Notes = require("../models/Notes");
 const mongoose = require("mongoose");
 
 module.exports = {
-  getProfile: async (req, res) => {
-    console.log(req.user);
-    try {
-      const notes = await Notes.find({ user: req.user.id }).populate({
-        path: "user",
-        match: { username: req.user.username },
-      });
-      res.render("dashboard.ejs", { notes: notes, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-
   getNotes: async (req, res) => {
     try {
       const notes = await Notes.find({ user: req.user._id }).populate({
         path: "user",
-        match: { username: req.user.username },
+        match: { userName: req.user.userName },
       });
-      res.render("notes.ejs", { notes: notes, user: req.user });
+      res.render("notes.ejs", { notes: notes, user: req.user._id });
     } catch (err) {
       console.log(err);
     }
@@ -62,9 +49,10 @@ module.exports = {
 
   deleteNotes: async (req, res) => {
     try {
-      const note = await Notes.findById(req.params.id);
-
-      await cloudinary.uploader.destroy(note.cloudinaryId);
+      const note = await Notes.findOne({ _id: req.params.id });
+      if (note.image && note.cloudinaryId) {
+        await cloudinary.uploader.destroy(note.cloudinaryId);
+      }
       await Notes.deleteOne({ _id: req.params.id });
       console.log("Deleted Note");
       res.redirect("/notes");

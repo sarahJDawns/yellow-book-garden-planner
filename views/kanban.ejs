@@ -1,2 +1,99 @@
 <%- include('partials/header') -%>
+
+<div class="container flex flex-row">
+  <div class="category p-1 mx-1 w-1/4 bg-indigo-400 rounded-md">
+    <div class="flex flex-col">
+      <h2 class="mb-3 text-xl">To Do</h2>
+      <ul>
+        <% kanban.forEach((item) => {
+          if (item.category === 'To Do') { %>
+        <li class="bg-blue-50 flex flex-col break-words mb-8 mt-15 border border-cyan-700 rounded px-4 pt-2 draggable" draggable="true">
+          <p class="text-slate-700 mt-2 mx-2"><%= item.item %></p>
+          <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row justify-end">
+            <button class="mr-2 mt-2" type="submit">
+              <i class="fa-solid fa-trash-can text-blue-500"></i>
+            </button>
+          </form>
+        </li>
+        <% }}); %>
+      </ul>
+      <form id="todo-form" action="/kanban/createKanban" method="POST">
+        <input type="hidden" name="category" value="To Do">
+        <input id="todo-input" type="text" name="item" placeholder="Add item" required>
+        <button type="submit">+ Add</button>
+      </form>
+    </div>
+  </div>
+  <div class="category p-1 mx-1 w-1/4 bg-indigo-400 rounded-md">
+    <div class="flex flex-col">
+      <div class="mb-3 text-xl">This Week</div>
+      <ul>
+        <% kanban.forEach((item) => {
+          if (item.category === 'This Week') { %>
+        <li class="bg-blue-50 flex flex-col break-words mb-8 mt-15 border border-cyan-700 rounded px-4 pt-2 draggable" draggable="true">
+          <p class="text-slate-700 mt-2 mx-2"><%= item.item %></p>
+          <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row justify-end">
+            <button class="mr-2 mt-2" type="submit">
+              <i class="fa-solid fa-trash-can text-blue-500"></i>
+            </button>
+          </form>
+        </li>
+        <% }}); %>
+      </ul>
+      <form id="todo-form" action="/kanban/createKanban" method="POST">
+        <input type="hidden" name="category" value="This Week">
+        <input id="todo-input" type="text" name="item" placeholder="Add item" required>
+        <button type="submit">+ Add</button>
+      </form>
+    </div>
+  </div>
+  <div class="category p-1 mx-1 w-1/4 bg-indigo-400 rounded-md">
+    <div class="flex flex-col">
+      <div class="mb-3 text-xl">Today</div>
+      <ul>
+        <% kanban.forEach((item) => {
+          if (item.category === 'Today') { %>
+        <li class="bg-blue-50 flex flex-col break-words mb-8 mt-15 border border-cyan-700 rounded px-4 pt-2 draggable" draggable="true">
+          <p class="text-slate-700 mt-2 mx-2"><%= item.item %></p>
+          <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row justify-end">
+            <button class="mr-2 mt-2" type="submit">
+              <i class="fa-solid fa-trash-can text-blue-500"></i>
+            </button>
+          </form>
+        </li>
+        <% }}); %>
+      </ul>
+      <form id="todo-form" action="/kanban/createKanban" method="POST">
+        <input type="hidden" name="category" value="Today">
+        <input id="todo-input" type="text" name="item" placeholder="Add item" required>
+        <button type="submit">+ Add</button>
+      </form>
+    </div>
+  </div>
+  <div class="category p-1 mx-1 w-1/4 bg-indigo-400 rounded-md">
+    <div class="flex flex-col">
+      <div class="mb-3 text-xl">In Progress</div>
+      <ul>
+        <% kanban.forEach((item) => {
+          if (item.category === 'In Progress') { %>
+        <li class="bg-blue-50 flex flex-col break-words mb-8 mt-15 border border-cyan-700 rounded px-4 pt-2 draggable" draggable="true">
+          <p class="text-slate-700 mt-2 mx-2"><%= item.item %></p>
+          <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row justify-end">
+            <button class="mr-2 mt-2" type="submit">
+              <i class="fa-solid fa-trash-can text-blue-500"></i>
+            </button>
+          </form>
+        </li>
+        <% }}); %>
+      </ul>
+      <form id="todo-form" action="/kanban/createKanban" method="POST">
+        <input type="hidden" name="category" value="In Progress">
+        <input id="todo-input" type="text" name="item" placeholder="Add item" required>
+        <button type="submit">+ Add</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <%- include('partials/footer') -%>

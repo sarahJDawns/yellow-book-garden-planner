@@ -10,9 +10,9 @@ router.get("/calculator", (req, res) => {
 router.get("/expenses", (req, res) => {
   res.render("expenses.ejs");
 });
-router.get("/kanban", (req, res) => {
-  res.render("kanban.ejs");
-});
+// router.get("/kanban", (req, res) => {
+//   res.render("kanban.ejs");
+// });
 router.get("/notes", (req, res) => {
   res.render("notes.ejs");
 });

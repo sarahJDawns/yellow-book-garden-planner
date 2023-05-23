@@ -6,6 +6,10 @@ module.exports = {
     "./public/*.{html, js, css, csv}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+    },
     extend: {},
   },
   plugins: [],

@@ -12,6 +12,7 @@ const cors = require("cors");
 const mainRoutes = require("./routes/main");
 const notesRoutes = require("./routes/notes");
 const dashboardRoutes = require("./routes/dashboard");
+const kanbanRoutes = require("./routes/kanban");
 const PORT = process.env.PORT || 2121;
 
 require("dotenv").config({ path: "./config/.env" });
@@ -50,6 +51,7 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/notes", notesRoutes);
 app.use("/", dashboardRoutes);
+app.use("/kanban", kanbanRoutes);
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server is running on port ${PORT}, better go catch it!`);
