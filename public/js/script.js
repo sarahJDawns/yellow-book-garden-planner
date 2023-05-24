@@ -135,26 +135,28 @@ if (document.querySelector("#zone")) {
 const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
 
-todoForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  todoForm.submit();
-});
-
-todoInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+if (todoForm && todoInput) {
+  todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     todoForm.submit();
-  }
-});
+  });
+
+  todoInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      todoForm.submit();
+    }
+  });
+}
 
 //* kanban drag & drop
 
-const draggables = document.querySelectorAll(".draggable");
-const categories = document.querySelectorAll(".category");
+const kanbanDraggables = document.querySelectorAll(".draggable");
+const kanbanCategories = document.querySelectorAll(".category");
 
-draggables.forEach((draggable) => {
+kanbanDraggables.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
     draggable.classList.add("dragging");
   });
@@ -163,7 +165,7 @@ draggables.forEach((draggable) => {
   });
 });
 
-categories.forEach((category) => {
+kanbanCategories.forEach((category) => {
   category.addEventListener("dragover", (e) => {
     e.preventDefault();
     const afterElement = getDragAfterElement(category, e.clientY);
@@ -191,5 +193,53 @@ function getDragAfterElement(category, y) {
       }
     },
     { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
+//* garden drag & drop
+
+const gardenContainer = document.querySelector(".garden");
+const gardenIcons = document.querySelectorAll(".gardenIcon");
+
+gardenIcons.forEach((icon) => {
+  icon.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", icon.id);
+    icon.classList.add("dragging");
+  });
+  icon.addEventListener("dragend", () => {
+    icon.classList.remove("dragging");
+  });
+});
+
+gardenContainer.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
+
+gardenContainer.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const draggableId = e.dataTransfer.getData("text/plain");
+  const draggable = document.getElementById(draggableId);
+  if (draggable && draggable.classList.contains("gardenIcon")) {
+    const clone = draggable.cloneNode(true);
+    clone.classList.remove("dragging");
+    e.target.appendChild(clone);
+  }
+});
+
+function getDragAfterElementGarden(garden, y) {
+  const draggableElements = [
+    ...garden.querySelectorAll(".draggable:not(.dragging)"),
+  ];
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY, element: null }
   ).element;
 }

@@ -1,0 +1,27 @@
+<%- include('partials/header') -%>
+
+<div class="container flex flex-row">
+  <div class="flex flex-col garden-container">
+    <img src="/images/icons8-carrot-40.png" alt="carrot" id="carrot" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-potato-40.png" alt="potato" id="potato" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-tomato-40.png" alt="tomato" id="tomato" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-corn-48.png" alt="corn" id="corn" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-edamame-beans-48.png" alt="beans" id="beans" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-garlic-40.png" alt="garlic" id="garlic" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-lettuce-48.png" alt="lettuce" id="lettuce" class="draggable gardenIcon" draggable="true">
+    <img src="/images/icons8-melon-40.png" alt="melon" id="melon" class="draggable gardenIcon" draggable="true">
+  </div>
+  <div class="container bg-slate-400 h-screen w-full">
+    <div class="garden grid grid-cols-10 gap-0 h-full">
+      <% for (let i = 0; i < 10; i++) { %>
+      <% for (let j = 0; j < 10; j++) { %>
+      <div class="h-10 w-10" data-row="<%= i %>" data-col="<%= j %>"></div>
+      <% } %>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<p>Vegetable icons by<a target="_blank" href="https://icons8.com">Icons8</a></p>
+
+<%- include('partials/footer') -%>

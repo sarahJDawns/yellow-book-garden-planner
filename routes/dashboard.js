@@ -16,8 +16,8 @@ router.get("/expenses", (req, res) => {
 router.get("/notes", (req, res) => {
   res.render("notes.ejs");
 });
-router.get("/planner", (req, res) => {
-  res.render("planner.ejs");
+router.get("/garden", (req, res) => {
+  res.render("garden.ejs");
 });
 
 module.exports = router;
