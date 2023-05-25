@@ -198,48 +198,81 @@ function getDragAfterElement(category, y) {
 
 //* garden drag & drop
 
-const gardenContainer = document.querySelector(".garden");
-const gardenIcons = document.querySelectorAll(".gardenIcon");
+const gardenDraggables = document.querySelectorAll(".garden-icon");
+const gardenCells = document.querySelectorAll(".garden-cell");
+let currentIcon = null;
 
-gardenIcons.forEach((icon) => {
-  icon.addEventListener("dragstart", (e) => {
-    e.dataTransfer.setData("text/plain", icon.id);
-    icon.classList.add("dragging");
+function addDragStartEvent(draggable) {
+  draggable.addEventListener("dragstart", (e) => {
+    draggable.classList.add("dragging");
+    e.dataTransfer.setData("text/plain", draggable.id);
+    currentIcon = draggable;
   });
-  icon.addEventListener("dragend", () => {
-    icon.classList.remove("dragging");
+
+  draggable.addEventListener("dragend", () => {
+    draggable.classList.remove("dragging");
+    currentIcon = null;
   });
+}
+
+function addDragOverEvent(cell) {
+  cell.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    cell.classList.add("highlight");
+  });
+
+  cell.addEventListener("dragleave", (e) => {
+    cell.classList.remove("highlight");
+  });
+}
+
+function addDropEvent(cell) {
+  cell.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (cell.children.length === 0 && currentIcon) {
+      const existingCell = currentIcon.closest(".garden-cell");
+      if (existingCell) {
+        existingCell.innerHTML = "";
+      }
+
+      const clone = currentIcon.cloneNode(true);
+      clone.classList.remove("dragging");
+
+      addDragStartEvent(clone);
+      clone.addEventListener("dragend", (e) => {
+        clone.classList.remove("dragging");
+      });
+
+      e.target.appendChild(clone);
+      currentIcon = null;
+    }
+
+    cell.classList.remove("highlight");
+  });
+}
+
+gardenDraggables.forEach(addDragStartEvent);
+gardenCells.forEach((cell) => {
+  addDragOverEvent(cell);
+  addDropEvent(cell);
 });
 
-gardenContainer.addEventListener("dragover", (e) => {
+document.addEventListener("dragover", (e) => {
   e.preventDefault();
 });
 
-gardenContainer.addEventListener("drop", (e) => {
+document.addEventListener("drop", (e) => {
   e.preventDefault();
-  const draggableId = e.dataTransfer.getData("text/plain");
-  const draggable = document.getElementById(draggableId);
-  if (draggable && draggable.classList.contains("gardenIcon")) {
-    const clone = draggable.cloneNode(true);
-    clone.classList.remove("dragging");
-    e.target.appendChild(clone);
+  if (currentIcon) {
+    const dropTarget = e.target;
+    const isOutsideGarden = !dropTarget.classList.contains("garden-cell");
+
+    if (isOutsideGarden) {
+      currentIcon.remove();
+    }
+
+    currentIcon.classList.remove("dragging");
+    currentIcon = null;
   }
 });
-
-function getDragAfterElementGarden(garden, y) {
-  const draggableElements = [
-    ...garden.querySelectorAll(".draggable:not(.dragging)"),
-  ];
-  return draggableElements.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY, element: null }
-  ).element;
-}

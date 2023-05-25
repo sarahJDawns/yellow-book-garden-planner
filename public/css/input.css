@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/** kanban drag & drop **/
+/** drag & drop **/
 
 .draggable {
   padding: 1rem;
-  background-color: white;
-  /* border: 1px solid black; */
   cursor: move;
 }
-
 .draggable.dragging {
   opacity: 0.5;
 }
+.highlight {
+  background-color: yellow; 
+}
+
