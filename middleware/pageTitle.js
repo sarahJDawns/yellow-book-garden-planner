@@ -18,9 +18,12 @@ const setPageTitle = (req, res, next) => {
     case "/kanban":
       pageTitle = "Kanban";
       break;
+    case "/delete-account":
+      pageTitle = "Delete Account";
+      break;
 
     default:
-      pageTitle = "Yellow Book";
+      pageTitle = "Yellow Book: Garden Planner";
       break;
   }
 

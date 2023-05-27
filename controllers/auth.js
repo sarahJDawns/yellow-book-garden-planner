@@ -2,6 +2,7 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 const Notes = require("../models/Notes");
+const Kanban = require("../models/Kanban");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -132,17 +133,15 @@ exports.postDeleteAccount = async (req, res) => {
     req.flash("errors", { msg: "All fields are required." });
     return res.redirect("/delete-account");
   }
-
   try {
-    await Notes.deleteMany({ user: req.user._id });
+    await Notes.deleteMany({ user: req.user.id });
+    await Kanban.deleteMany({ user: req.user.id });
     await User.deleteOne({ _id: req.user._id });
     console.log("Deleted User");
     req.flash("info", { msg: "Your account has been deleted." });
-    return res.render("delete-account", {
-      msg: "Your account has been deleted.",
-    });
+    return res.redirect("/");
   } catch (err) {
-    console.error("Error in deletion");
+    console.error("Error in deletion", err);
     res.redirect("/signup");
   }
 };

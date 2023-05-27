@@ -4,7 +4,11 @@ module.exports = {
       res.locals.user = req.user;
       return next();
     } else {
-      res.redirect("/");
+      if (req.path === "/" || req.path === "/login" || req.path === "/signup") {
+        return next();
+      } else {
+        return res.redirect("/");
+      }
     }
   },
   ensureGuest: function (req, res, next) {

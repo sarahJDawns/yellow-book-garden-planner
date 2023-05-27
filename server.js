@@ -13,7 +13,7 @@ const mainRoutes = require("./routes/main");
 const notesRoutes = require("./routes/notes");
 const dashboardRoutes = require("./routes/dashboard");
 const kanbanRoutes = require("./routes/kanban");
-const { ensureAuth } = require("./middleware/auth");
+// const { ensureAuth } = require("./middleware/auth");
 const setPageTitle = require("./middleware/pageTitle");
 const PORT = process.env.PORT || 2121;
 
@@ -52,7 +52,15 @@ app.use(flash());
 
 app.use(setPageTitle);
 
-app.use(ensureAuth);
+// app.use(function (req, res, next) {
+//   if (req.isAuthenticated()) {
+//     res.locals.user = req.user;
+//     res.locals.isAuthenticated = true;
+//   } else {
+//     res.locals.isAuthenticated = false;
+//   }
+//   next();
+// });
 
 app.use("/", mainRoutes);
 app.use("/notes", notesRoutes);

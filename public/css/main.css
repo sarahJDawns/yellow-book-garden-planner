@@ -1227,6 +1227,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-green-700 {
+  --tw-text-opacity: 1;
+  color: rgb(21 128 61 / var(--tw-text-opacity));
+}
+
 .caret-purple-600 {
   caret-color: #9333ea;
 }
@@ -1456,10 +1461,6 @@ video {
     margin-left: 16rem;
   }
 
-  .sm\:mt-3 {
-    margin-top: 0.75rem;
-  }
-
   .sm\:w-1\/2 {
     width: 50%;
   }
@@ -1467,23 +1468,11 @@ video {
   .sm\:w-2\/3 {
     width: 66.666667%;
   }
-
-  .sm\:flex-row {
-    flex-direction: row;
-  }
 }
 
 @media (min-width: 768px) {
-  .md\:ml-8 {
-    margin-left: 2rem;
-  }
-
   .md\:mt-12 {
     margin-top: 3rem;
-  }
-
-  .md\:mt-3 {
-    margin-top: 0.75rem;
   }
 
   .md\:mt-6 {
