@@ -5,11 +5,8 @@ const mongoose = require("mongoose");
 module.exports = {
   getNotes: async (req, res) => {
     try {
-      const notes = await Notes.find({ user: req.user._id }).populate({
-        path: "user",
-        match: { userName: req.user.userName },
-      });
-      res.render("notes.ejs", { notes: notes, user: req.user._id });
+      const notes = await Notes.find({ user: req.user });
+      res.render("notes.ejs", { notes: notes, user: req.user });
     } catch (err) {
       console.log(err);
     }

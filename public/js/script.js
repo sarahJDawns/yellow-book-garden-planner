@@ -32,6 +32,26 @@ if (toTopButton) {
   };
 }
 
+//* sidebar
+
+document.addEventListener("DOMContentLoaded", function () {
+  var sidebar = document.getElementById("separator-sidebar");
+  var sidebarToggleOpen = document.getElementById("sidebar-toggle-open");
+  var sidebarToggleClose = document.getElementById("sidebar-toggle-close");
+
+  sidebarToggleOpen.addEventListener("click", function () {
+    sidebar.classList.add("open");
+    sidebarToggleOpen.style.display = "none";
+    sidebarToggleClose.style.display = "inline-block";
+  });
+
+  sidebarToggleClose.addEventListener("click", function () {
+    sidebar.classList.remove("open");
+    sidebarToggleOpen.style.display = "inline-block";
+    sidebarToggleClose.style.display = "none";
+  });
+});
+
 // //* dashboard sidebar populate
 // document.addEventListener("DOMContentLoaded", function () {
 //   function loadContent(url) {
@@ -198,81 +218,131 @@ function getDragAfterElement(category, y) {
 
 //* garden drag & drop
 
-const gardenDraggables = document.querySelectorAll(".garden-icon");
-const gardenCells = document.querySelectorAll(".garden-cell");
-let currentIcon = null;
+// const gardenDraggables = document.querySelectorAll(".garden-icon");
+// const gardenCells = document.querySelectorAll(".garden-cell");
+// let currentIcon = null;
 
-function addDragStartEvent(draggable) {
-  draggable.addEventListener("dragstart", (e) => {
-    draggable.classList.add("dragging");
-    e.dataTransfer.setData("text/plain", draggable.id);
-    currentIcon = draggable;
-  });
+// function addDragStartEvent(draggable) {
+//   draggable.addEventListener("dragstart", (e) => {
+//     draggable.classList.add("dragging");
+//     e.dataTransfer.setData("text/plain", draggable.id);
+//     currentIcon = draggable;
+//   });
 
-  draggable.addEventListener("dragend", () => {
-    draggable.classList.remove("dragging");
-    currentIcon = null;
-  });
-}
+//   draggable.addEventListener("dragend", () => {
+//     draggable.classList.remove("dragging");
+//     currentIcon = null;
+//   });
+// }
 
-function addDragOverEvent(cell) {
-  cell.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    cell.classList.add("highlight");
-  });
+// function addDragOverEvent(cell) {
+//   cell.addEventListener("dragover", (e) => {
+//     e.preventDefault();
+//     cell.classList.add("highlight");
+//   });
 
-  cell.addEventListener("dragleave", (e) => {
-    cell.classList.remove("highlight");
-  });
-}
+//   cell.addEventListener("dragleave", (e) => {
+//     cell.classList.remove("highlight");
+//   });
+// }
 
-function addDropEvent(cell) {
-  cell.addEventListener("drop", (e) => {
-    e.preventDefault();
+// function addDropEvent(cell) {
+//   cell.addEventListener("drop", (e) => {
+//     e.preventDefault();
 
-    if (cell.children.length === 0 && currentIcon) {
-      const existingCell = currentIcon.closest(".garden-cell");
-      if (existingCell) {
-        existingCell.innerHTML = "";
-      }
+//     if (cell.children.length === 0 && currentIcon) {
+//       const existingCell = currentIcon.closest(".garden-cell");
+//       if (existingCell) {
+//         existingCell.innerHTML = "";
+//       }
 
-      const clone = currentIcon.cloneNode(true);
-      clone.classList.remove("dragging");
+//       const clone = currentIcon.cloneNode(true);
+//       clone.classList.remove("dragging");
 
-      addDragStartEvent(clone);
-      clone.addEventListener("dragend", (e) => {
-        clone.classList.remove("dragging");
-      });
+//       addDragStartEvent(clone);
+//       clone.addEventListener("dragend", (e) => {
+//         clone.classList.remove("dragging");
+//       });
 
-      e.target.appendChild(clone);
-      currentIcon = null;
-    }
+//       e.target.appendChild(clone);
+//       currentIcon = null;
+//     }
 
-    cell.classList.remove("highlight");
-  });
-}
+//     cell.classList.remove("highlight");
+//   });
+// }
 
-gardenDraggables.forEach(addDragStartEvent);
-gardenCells.forEach((cell) => {
-  addDragOverEvent(cell);
-  addDropEvent(cell);
-});
+// gardenDraggables.forEach(addDragStartEvent);
+// gardenCells.forEach((cell) => {
+//   addDragOverEvent(cell);
+//   addDropEvent(cell);
+// });
 
-document.addEventListener("dragover", (e) => {
-  e.preventDefault();
-});
+// document.addEventListener("dragover", (e) => {
+//   e.preventDefault();
+// });
+// document.addEventListener("drop", (e) => {
+//   e.preventDefault();
 
-document.addEventListener("drop", (e) => {
-  e.preventDefault();
-  if (currentIcon) {
-    const dropTarget = e.target;
-    const isOutsideGarden = !dropTarget.classList.contains("garden-cell");
+//   if (currentIcon) {
+//     const isOutsideGarden = !e.target.classList.contains("garden-cell");
+//     const isDroppedInIconList = e.target.classList.contains("garden-icon-list");
+//     const isOriginatingFromIconList =
+//       currentIcon.parentElement.classList.contains("garden-icon-list");
+//     const isDroppedInGardenCell = e.target.classList.contains("garden-cell");
 
-    if (isOutsideGarden) {
-      currentIcon.remove();
-    }
+//     if (isOutsideGarden && !isDroppedInIconList) {
+//       currentIcon.remove();
+//     } else if (isDroppedInGardenCell && isOriginatingFromIconList) {
+//       const existingCell = e.target.closest(".garden-cell");
+//       existingCell.innerHTML = "";
 
-    currentIcon.classList.remove("dragging");
-    currentIcon = null;
-  }
-});
+//       const clone = currentIcon.cloneNode(true);
+//       clone.classList.remove("dragging");
+
+//       addDragStartEvent(clone);
+//       clone.addEventListener("dragend", (e) => {
+//         clone.classList.remove("dragging");
+//       });
+
+//       e.target.appendChild(clone);
+//     } else {
+//       currentIcon.classList.remove("dragging");
+//     }
+
+//     currentIcon = null;
+//   }
+// });
+
+// document.addEventListener("drop", (e) => {
+//   e.preventDefault();
+
+//   if (currentIcon) {
+//     const isOutsideGarden = !e.target.classList.contains("garden-cell");
+//     const isDroppedInIconList = e.target.classList.contains("garden-icon-list");
+//     const isOriginatingFromIconList =
+//       currentIcon.parentElement.classList.contains("garden-icon-list");
+//     const isDroppedInGardenCell = e.target.classList.contains("garden-cell");
+
+//     if (isOutsideGarden && !isDroppedInIconList) {
+//       currentIcon.remove();
+//     } else if (isDroppedInGardenCell && isOriginatingFromIconList) {
+//       const existingCell = currentIcon.closest(".garden-cell");
+//       existingCell.innerHTML = "";
+
+//       const clone = currentIcon.cloneNode(true);
+//       clone.classList.remove("dragging");
+
+//       addDragStartEvent(clone);
+//       clone.addEventListener("dragend", (e) => {
+//         clone.classList.remove("dragging");
+//       });
+
+//       e.target.parentElement.appendChild(clone);
+//     } else {
+//       currentIcon.classList.remove("dragging");
+//     }
+
+//     currentIcon = null;
+//   }
+// });

@@ -1,7 +1,7 @@
 <%- include('partials/header') -%>
 
 <div class="flex flex-row">
-  <div class="category flex flex-col">
+  <div class="category garden-icon-list flex flex-col">
     <img src="/images/icons8-carrot-40.png" alt="carrot" id="carrot" class="draggable garden-icon" draggable="true">
     <img src="/images/icons8-potato-40.png" alt="potato" id="potato" class="draggable garden-icon" draggable="true">
     <img src="/images/icons8-tomato-40.png" alt="tomato" id="tomato" class="draggable garden-icon" draggable="true">
@@ -15,7 +15,7 @@
     <div class="grid grid-cols-10 gap-0 h-full">
       <% for (let i = 0; i < 5; i++) { %>
       <% for (let j = 0; j < 5; j++) { %>
-      <div class="garden-cell" data-row="<%= i %>" data-col="<%= j %>"></div>
+      <div class="category garden-cell" data-row="<%= i %>" data-col="<%= j %>"></div>
       <% } %>
       <% } %>
     </div>

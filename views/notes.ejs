@@ -2,12 +2,6 @@
 
 <div class="bg-slate-100 flex flex-col mx-auto p-6 ">
   <div class="container flex flex-col justify-center items-center mx-auto p-6 md:w-2/3">
-    <div class="container flex flex-col justify-between mb-8 sm:flex-row">
-      <div class="flex flex-col md:ml-8">
-        <a href="/logout" class="mt-8 p-3 px-6 pt-2 text-center font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700">Logout</a>
-        <a class="mt-16 p-3 px-6 font-bold text-slate-100 bg-cyan-600 rounded-full baseline text-center hover:bg-cyan-700 sm:mt-3 md:mt-3" href="/delete-account">Delete Account</a>
-      </div>
-    </div>
     <% if (locals.messages.errors) { %>
     <% messages.errors.forEach((el) => { %>
     <div class="text-xl text-red-700 font-bold mx-auto text-center">
@@ -64,10 +58,5 @@
     </ul>
   </div>
 </div>
-<button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-purple-600 hover:bg-purple-700 text-slate-100 text-lg font-semibold transition-colors duration-300">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-    <path d="M12 4l8 8h-6v8h-4v-8H4l8-8z" />
-  </svg>
-  <span class="sr-only">Go to top</span>
-</button>
+
 <%- include('partials/footer') -%>
