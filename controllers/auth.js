@@ -3,6 +3,7 @@ const validator = require("validator");
 const User = require("../models/User");
 const Notes = require("../models/Notes");
 const Kanban = require("../models/Kanban");
+const Garden = require("../models/Garden");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -62,9 +63,7 @@ exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect("/dashboard");
   }
-  res.render("signup", {
-    title: "Create Account",
-  });
+  res.render("signup");
 };
 
 exports.postSignup = (req, res, next) => {
@@ -136,6 +135,7 @@ exports.postDeleteAccount = async (req, res) => {
   try {
     await Notes.deleteMany({ user: req.user.id });
     await Kanban.deleteMany({ user: req.user.id });
+    await Garden.deleteOne({ user: req.user.id });
     await User.deleteOne({ _id: req.user._id });
     console.log("Deleted User");
     req.flash("info", { msg: "Your account has been deleted." });

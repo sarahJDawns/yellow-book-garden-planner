@@ -14,8 +14,5 @@ router.get("/expenses", ensureAuth, (req, res) => {
 router.get("/notes", ensureAuth, (req, res) => {
   res.render("notes.ejs", { title: res.locals.title });
 });
-router.get("/garden", ensureAuth, (req, res) => {
-  res.render("garden.ejs", { title: res.locals.title });
-});
 
 module.exports = router;

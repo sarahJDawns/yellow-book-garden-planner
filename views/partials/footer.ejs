@@ -13,7 +13,16 @@
   </button>
 
 </footer>
+
 <script src="/js/script.js"></script>
+<script>
+  if (window.location.pathname === "/garden") {
+    let gardenScript = document.createElement("script");
+    gardenScript.src = "/js/garden.js";
+    document.head.appendChild(gardenScript);
+  }
+</script>
+
 </body>
 
 </html>

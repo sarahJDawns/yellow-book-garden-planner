@@ -1,4 +1,5 @@
 //* bypass login
+
 function bypassLogin() {
   const email = "tomato@10.com";
   const password = "tomato@10.com";
@@ -10,6 +11,7 @@ function bypassLogin() {
 }
 
 //* scroll to top button
+
 let toTopButton = document.getElementById("to-top-button");
 
 if (toTopButton) {
@@ -35,9 +37,9 @@ if (toTopButton) {
 //* sidebar
 
 document.addEventListener("DOMContentLoaded", function () {
-  var sidebar = document.getElementById("separator-sidebar");
-  var sidebarToggleOpen = document.getElementById("sidebar-toggle-open");
-  var sidebarToggleClose = document.getElementById("sidebar-toggle-close");
+  const sidebar = document.getElementById("separator-sidebar");
+  const sidebarToggleOpen = document.getElementById("sidebar-toggle-open");
+  const sidebarToggleClose = document.getElementById("sidebar-toggle-close");
 
   sidebarToggleOpen.addEventListener("click", function () {
     sidebar.classList.add("open");
@@ -52,36 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// //* dashboard sidebar populate
-// document.addEventListener("DOMContentLoaded", function () {
-//   function loadContent(url) {
-//     fetch(url)
-//       .then((response) => response.text())
-//       .then((data) => {
-//         document.getElementById("content").innerHTML = data;
-//       })
-//       .catch((error) => {
-//         console.log("Error:", error);
-//       });
-//   }
+//* calculator page
 
-//   let sidebarLinks = document.querySelectorAll(".sidebar-link");
-//   sidebarLinks.forEach(function (link) {
-//     link.addEventListener("click", function (e) {
-//       e.preventDefault();
-//       let url = this.getAttribute("href");
-//       loadContent(url);
-//       history.pushState({ url: url }, "", url);
-//     });
-//   });
-
-//   window.addEventListener("popstate", function (e) {
-//     let url = e.state.url;
-//     loadContent(url);
-//   });
-// });
-
-//*table
+//* table
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.querySelector("#table")) {
@@ -215,134 +190,3 @@ function getDragAfterElement(category, y) {
     { offset: Number.NEGATIVE_INFINITY }
   ).element;
 }
-
-//* garden drag & drop
-
-// const gardenDraggables = document.querySelectorAll(".garden-icon");
-// const gardenCells = document.querySelectorAll(".garden-cell");
-// let currentIcon = null;
-
-// function addDragStartEvent(draggable) {
-//   draggable.addEventListener("dragstart", (e) => {
-//     draggable.classList.add("dragging");
-//     e.dataTransfer.setData("text/plain", draggable.id);
-//     currentIcon = draggable;
-//   });
-
-//   draggable.addEventListener("dragend", () => {
-//     draggable.classList.remove("dragging");
-//     currentIcon = null;
-//   });
-// }
-
-// function addDragOverEvent(cell) {
-//   cell.addEventListener("dragover", (e) => {
-//     e.preventDefault();
-//     cell.classList.add("highlight");
-//   });
-
-//   cell.addEventListener("dragleave", (e) => {
-//     cell.classList.remove("highlight");
-//   });
-// }
-
-// function addDropEvent(cell) {
-//   cell.addEventListener("drop", (e) => {
-//     e.preventDefault();
-
-//     if (cell.children.length === 0 && currentIcon) {
-//       const existingCell = currentIcon.closest(".garden-cell");
-//       if (existingCell) {
-//         existingCell.innerHTML = "";
-//       }
-
-//       const clone = currentIcon.cloneNode(true);
-//       clone.classList.remove("dragging");
-
-//       addDragStartEvent(clone);
-//       clone.addEventListener("dragend", (e) => {
-//         clone.classList.remove("dragging");
-//       });
-
-//       e.target.appendChild(clone);
-//       currentIcon = null;
-//     }
-
-//     cell.classList.remove("highlight");
-//   });
-// }
-
-// gardenDraggables.forEach(addDragStartEvent);
-// gardenCells.forEach((cell) => {
-//   addDragOverEvent(cell);
-//   addDropEvent(cell);
-// });
-
-// document.addEventListener("dragover", (e) => {
-//   e.preventDefault();
-// });
-// document.addEventListener("drop", (e) => {
-//   e.preventDefault();
-
-//   if (currentIcon) {
-//     const isOutsideGarden = !e.target.classList.contains("garden-cell");
-//     const isDroppedInIconList = e.target.classList.contains("garden-icon-list");
-//     const isOriginatingFromIconList =
-//       currentIcon.parentElement.classList.contains("garden-icon-list");
-//     const isDroppedInGardenCell = e.target.classList.contains("garden-cell");
-
-//     if (isOutsideGarden && !isDroppedInIconList) {
-//       currentIcon.remove();
-//     } else if (isDroppedInGardenCell && isOriginatingFromIconList) {
-//       const existingCell = e.target.closest(".garden-cell");
-//       existingCell.innerHTML = "";
-
-//       const clone = currentIcon.cloneNode(true);
-//       clone.classList.remove("dragging");
-
-//       addDragStartEvent(clone);
-//       clone.addEventListener("dragend", (e) => {
-//         clone.classList.remove("dragging");
-//       });
-
-//       e.target.appendChild(clone);
-//     } else {
-//       currentIcon.classList.remove("dragging");
-//     }
-
-//     currentIcon = null;
-//   }
-// });
-
-// document.addEventListener("drop", (e) => {
-//   e.preventDefault();
-
-//   if (currentIcon) {
-//     const isOutsideGarden = !e.target.classList.contains("garden-cell");
-//     const isDroppedInIconList = e.target.classList.contains("garden-icon-list");
-//     const isOriginatingFromIconList =
-//       currentIcon.parentElement.classList.contains("garden-icon-list");
-//     const isDroppedInGardenCell = e.target.classList.contains("garden-cell");
-
-//     if (isOutsideGarden && !isDroppedInIconList) {
-//       currentIcon.remove();
-//     } else if (isDroppedInGardenCell && isOriginatingFromIconList) {
-//       const existingCell = currentIcon.closest(".garden-cell");
-//       existingCell.innerHTML = "";
-
-//       const clone = currentIcon.cloneNode(true);
-//       clone.classList.remove("dragging");
-
-//       addDragStartEvent(clone);
-//       clone.addEventListener("dragend", (e) => {
-//         clone.classList.remove("dragging");
-//       });
-
-//       e.target.parentElement.appendChild(clone);
-//     } else {
-//       currentIcon.classList.remove("dragging");
-//     }
-
-//     currentIcon = null;
-//   }
-// });

@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+
+const GardenSchema = new mongoose.Schema({
+  cells: [
+    {
+      position: {
+        row: { type: Number, required: true },
+        col: { type: Number, required: true },
+      },
+      icon: { type: String, required: true },
+    },
+  ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+module.exports = mongoose.model("Garden", GardenSchema);
