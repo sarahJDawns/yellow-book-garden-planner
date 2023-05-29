@@ -14,7 +14,7 @@ const notesRoutes = require("./routes/notes");
 const dashboardRoutes = require("./routes/dashboard");
 const kanbanRoutes = require("./routes/kanban");
 const gardenRoutes = require("./routes/garden");
-// const { ensureAuth } = require("./middleware/auth");
+const expensesRoutes = require("./routes/expenses");
 const setPageTitle = require("./middleware/pageTitle");
 const PORT = process.env.PORT || 2121;
 
@@ -53,16 +53,6 @@ app.use(flash());
 
 app.use(setPageTitle);
 
-// app.use(function (req, res, next) {
-//   if (req.isAuthenticated()) {
-//     res.locals.user = req.user;
-//     res.locals.isAuthenticated = true;
-//   } else {
-//     res.locals.isAuthenticated = false;
-//   }
-//   next();
-// });
- 
 app.use(express.json());
 
 app.use("/", mainRoutes);
@@ -70,6 +60,7 @@ app.use("/notes", notesRoutes);
 app.use("/", dashboardRoutes);
 app.use("/kanban", kanbanRoutes);
 app.use("/garden", gardenRoutes);
+app.use("/expenses", expensesRoutes);
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server is running on port ${PORT}, better go catch it!`);

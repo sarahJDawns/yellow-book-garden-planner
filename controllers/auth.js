@@ -4,6 +4,7 @@ const User = require("../models/User");
 const Notes = require("../models/Notes");
 const Kanban = require("../models/Kanban");
 const Garden = require("../models/Garden");
+const Expenses = require("../models/Expenses");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -136,6 +137,7 @@ exports.postDeleteAccount = async (req, res) => {
     await Notes.deleteMany({ user: req.user.id });
     await Kanban.deleteMany({ user: req.user.id });
     await Garden.deleteOne({ user: req.user.id });
+    await Expenses.deleteMany({ user: req.user.id });
     await User.deleteOne({ _id: req.user._id });
     console.log("Deleted User");
     req.flash("info", { msg: "Your account has been deleted." });
