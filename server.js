@@ -11,7 +11,6 @@ const connectDB = require("./config/database");
 const cors = require("cors");
 const mainRoutes = require("./routes/main");
 const notesRoutes = require("./routes/notes");
-const dashboardRoutes = require("./routes/dashboard");
 const kanbanRoutes = require("./routes/kanban");
 const gardenRoutes = require("./routes/garden");
 const expensesRoutes = require("./routes/expenses");
@@ -57,7 +56,6 @@ app.use(express.json());
 
 app.use("/", mainRoutes);
 app.use("/notes", notesRoutes);
-app.use("/", dashboardRoutes);
 app.use("/kanban", kanbanRoutes);
 app.use("/garden", gardenRoutes);
 app.use("/expenses", expensesRoutes);

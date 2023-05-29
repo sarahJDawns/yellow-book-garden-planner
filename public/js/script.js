@@ -133,14 +133,12 @@ const todoInput = document.getElementById("todo-input");
 if (todoForm && todoInput) {
   todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
     todoForm.submit();
   });
 
   todoInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-
       todoForm.submit();
     }
   });
@@ -189,4 +187,51 @@ function getDragAfterElement(category, y) {
     },
     { offset: Number.NEGATIVE_INFINITY }
   ).element;
+}
+
+//* expenses
+
+const expensesForm = document.querySelector("#expenses-form");
+const textInput = document.querySelector("#text");
+const amountInput = document.querySelector("#amount");
+
+if (expensesForm && textInput && amountInput) {
+  expensesForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    expensesForm.submit();
+  });
+
+  amountInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      expensesForm.submit();
+    }
+  });
+}
+
+if (document.querySelector("#expenses")) {
+  const totalDisplay = document.querySelector("#total");
+
+  const expenseItems = document.querySelectorAll("#list li");
+  let totalExpenses = 0;
+  expenseItems.forEach((item) => {
+    const amount = parseFloat(item.querySelector("span").textContent);
+    totalExpenses += amount;
+  });
+  totalDisplay.textContent = totalExpenses.toFixed(2);
+
+  const addButton = document.querySelector("#add");
+
+  addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const newAmount = parseFloat(document.querySelector("#amount").value);
+
+    totalExpenses += newAmount;
+
+    totalDisplay.textContent = totalExpenses.toFixed(2);
+
+    document.querySelector("#text").value = "";
+    document.querySelector("#amount").value = "";
+  });
 }

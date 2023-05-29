@@ -8,7 +8,7 @@ const ExpensesSchema = new mongoose.Schema({
   },
   amount: {
     type: Number,
-    required: [true, "Please add a positive or negative number"],
+    required: [true, "Please add a number"],
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

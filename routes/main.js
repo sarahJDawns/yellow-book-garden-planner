@@ -5,6 +5,11 @@ const homeController = require("../controllers/home");
 const { ensureAuth } = require("../middleware/auth");
 
 router.get("/", homeController.getIndex);
+router.get("/dashboard", homeController.getProfile);
+
+router.get("/calculator", ensureAuth, (req, res) => {
+  res.render("calculator.ejs");
+});
 
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);

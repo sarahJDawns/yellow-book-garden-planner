@@ -10,7 +10,11 @@ module.exports = {
       center: true,
       padding: "2rem",
     },
-    extend: {},
+    fontFamily: {
+      body: ["Lato", "sans-serif"],
+    },
+    // colors: {},
+    // extend: {},
   },
   plugins: [],
 };
