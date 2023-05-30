@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //* calculator page
 
-//* table
+//* seed & plant rate table
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.querySelector("#table")) {
@@ -103,26 +103,6 @@ if (document.querySelector("#calc-display")) {
     let totalCount = getCount();
     document.querySelector("#calc-display").innerText = totalCount;
   });
-}
-
-//* zip code zone
-
-if (document.querySelector("#zone")) {
-  document.querySelector("#zone").addEventListener("click", getZone);
-
-  function getZone() {
-    let code = document.querySelector("#code").value;
-
-    fetch(`https://phzmapi.org/${code}.json`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.zone);
-        document.querySelector("#zone-display").innerText = data.zone;
-      })
-      .catch((err) => {
-        console.log("error");
-      });
-  }
 }
 
 //* kanban add item
@@ -189,7 +169,7 @@ function getDragAfterElement(category, y) {
   ).element;
 }
 
-//* expenses
+//* expenses page
 
 const expensesForm = document.querySelector("#expenses-form");
 const textInput = document.querySelector("#text");

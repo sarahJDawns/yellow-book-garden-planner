@@ -1,52 +1,113 @@
 <%- include('partials/header-auth') %>
 
-<div class="p-4 sm:ml-64">
-  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-    <div class="grid grid-cols-3 gap-4 mb-4">
-      <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+<div class="container">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg">
+
+    <div class="flex flex-row items-center justify-between mb-4 rounded bg-gray-50 dark:bg-gray-800">
+
+      <div class="flex flex-col">
+        <div class="text-lg from-neutral-400" id="date"></div>
+        <div class="text-lg from-neutral-400" id="location"></div>
+        <div class="text-lg from-neutral-400" id="time"></div>
       </div>
-      <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+
+      <div class="flex flex-col">
+        <div class="bg-slate-300 p-3 rounded-sm">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input class="flex-1 ml-2" id="searchInput" type="text" />
+          <button class="bg-orange-300 p-3 rounded-sm my-1 cursor-pointer hover:bg-slate-400" onclick="getWeatherData()">
+            Search
+          </button>
+        </div>
+        <div class=">
+          <div class=" text-lg my-2">Today Overview</div>
+        <div class="flex flex-row justify-center mt-3">
+          <div class="h-4 w-4 mr-2">
+            <img src="" alt="weather icon" id="weatherIcon" />
+          </div>
+          <div class="flex-1">
+            <span class="flex flex-row justify-between text-center" id="currentTemp"></span>
+            <span class="text-lg">˚F</span>
+            <div class="text-lg" id="weatherDescription">
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col bg-slate-300 rounded-sm py-1">
+          <div class="pr-1">
+            <i class="text-purple-400 fa-solid fa-temperature-half"></i>
+          </div>
+          <div class="w-full">
+            <div class="text-lg from-neutral-400">Lowest / Highest</div>
+            <div class="flex flex-end w-full">
+              <span class="flex-3">
+                <span class="text-lg from-neutral-400" id="lowestToday"></span>
+                <span class="text-lg from-neutral-400">˚F</span>
+                <span> / </span>
+                <span class="text-lg from-neutral-400" id="highestToday"></span>
+                <span class="text-lg from-neutral-400">˚F</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="text-lg font-stone-300">Sunrise & Sunset</div>
+        <div class="flex flex-col justify-center mt-3 bg-orange-400 p-2 rounded-sm border border-sky-300">
+          <div class="text-purple-400"><i class="fa-solid fa-sun"></i></div>
+          <div class="flex-1">
+            <div class="text-lg font-stone-300">Sunrise</div>
+            <div class="font-bold" id="sunrise"></div>
+          </div>
+          <div class="font-bold" id="sunriseRelative"></div>
+        </div>
+        <div class="flex flex-col justify-center mt-3 bg-orange-400 p-2 rounded-sm border border-sky-300">
+          <div class="text-purple-400"><i class="fa-solid fa-moon"></i></div>
+          <div class="flex-1">
+            <div class="text-lg font-stone-300">Sunset</div>
+            <div class="font-bold" id="sunset"></div>
+          </div>
+          <div class="font-bold" id="sunsetRelative"></div>
+        </div>
+        <div class="overviewProp">
+          <div class="flex-1">
+            <i class="text-purple-400 fa-solid fa-wind"></i>
+          </div>
+          <div class="flex-1">
+            <div class="text-lg">Wind</div>
+            <div class="flex flex-col">
+              <span class="flex flex-row">
+                <span class="text-lg" id="wind"></span>
+                <span class="text-lg">mph</span>
+              </span>
+              <span class="secondaryData" id="windDir"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-      <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-    </div>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+  </div>
+
+  <div class="flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
+    <section id="plant">
+      <div class="">
+        <div>
+          <h3 class="pb-1 mx-1 my-3 border-b border-gray-300">Plant Hardiness Zone</h3>
+        </div>
+        <div>
+          <div>
+            <div>
+              <p class="pt-3">Find your zone</p>
+              <input class="bg-blue-50 caret-purple-600 px-4 py-3 rounded-full border-2 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="code" type="text" placeholder="Enter Zip Code" />
+            </div>
+          </div>
+          <button id="zone" class="flex-flex-row w-full p-3 px-6 pt-2 mt-4 mx-auto font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700 md:justify-center md:items-center md:w-1/3">
+            Find
+          </button>
+          <div class="pb-5">
+            <p class="pb-3">You are in zone</p>
+            <p id="zone-display"></p>
+          </div>
+        </div>
       </div>
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-    </div>
-    <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-      <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-    </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-      </div>
-    </div>
+    </section>
   </div>
 </div>
 
