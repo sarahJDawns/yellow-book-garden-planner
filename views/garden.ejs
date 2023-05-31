@@ -1,11 +1,11 @@
 <%- include('partials/header-auth') %>
 
-<div id="garden" class="garden flex flex-row">
-  <div>
+<div id="garden" class="garden container flex flex-col">
+  <div class="flex flex-row">
     <button id="saveBtn" type="button" onclick="saveGarden('<%= user._id %>')">Save Garden</button>
     <button id="clearBtn" type="button" onclick="clearGarden('<%= user._id %>')">Clear Garden</button>
   </div>
-  <div class="flex flex-col">
+  <div class="flex flex-row garden-icon-list">
     <img src="/images/icons8-carrot-40.png" alt="carrot" id="carrot" class="garden-icon cursor-move" draggable="true">
     <img src="/images/icons8-potato-40.png" alt="potato" id="potato" class="garden-icon cursor-move" draggable="true">
     <img src="/images/icons8-tomato-40.png" alt="tomato" id="tomato" class="garden-icon cursor-move" draggable="true">
@@ -15,10 +15,10 @@
     <img src="/images/icons8-lettuce-48.png" alt="lettuce" id="lettuce" class="garden-icon cursor-move" draggable="true">
     <img src="/images/icons8-melon-40.png" alt="melon" id="melon" class="garden-icon cursor-move" draggable="true">
   </div>
-  <div class="bg-slate-400 h-100 w-full grid grid-cols-10 gap-0 ">
-    <% for (let i = 0; i < 10; i++) { %>
-    <% for (let j = 0; j < 10; j++) { %>
-    <div class="garden-cell border border-sky-500 w-10 h-10" data-row="<%= i %>" data-col="<%= j %>" id="cell-<%= i %>-<%= j %>">
+  <div class="bg-slate-400 h-100 grid grid-cols-5 grid-flow-row">
+    <% for (let i = 0; i < 5; i++) { %>
+    <% for (let j = 0; j < 5; j++) { %>
+    <div class="garden-cell border border-sky-500 w-20 h-20 p-0 m-0" data-row="<%= i %>" data-col="<%= j %>" id="cell-<%= i %>-<%= j %>">
       <% if (user.garden && user.garden.cells) {
             const cell = user.garden.cells.find(c => c.position.row === i && c.position.col === j);
             if (cell) { %>

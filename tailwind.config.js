@@ -13,8 +13,19 @@ module.exports = {
     fontFamily: {
       body: ["Lato", "sans-serif"],
     },
-    // colors: {},
-    // extend: {},
+    colors: {
+      lightGray: (241, 245, 249),
+      medGray: (203, 213, 225),
+      darkGray: (148, 163, 184),
+      yellow: rgb(255, 226, 18),
+      lightOrange: rgb(253, 186, 116),
+      mediumOrange: rgb(251, 146, 60),
+      lightGreen: rgb(233, 255, 153),
+      limeGreen: rgb(177, 255, 5),
+      brightGreen: rgb(0, 237, 100),
+      darkGreen: rgb(0, 104, 74),
+      brightBlue: rgb(0, 110, 255),
+      lightPurple: rgb(192, 132, 252),
+    },
   },
-  plugins: [],
 };

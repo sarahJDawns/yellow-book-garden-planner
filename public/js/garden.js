@@ -4,31 +4,28 @@ const gardenCells = document.querySelectorAll(".garden-cell");
 const gardenIcons = document.querySelectorAll(".garden-icon");
 
 function makeDraggable(icon) {
+  if (icon.hasAttribute("data-cloned")) {
+    return;
+  }
+
   icon.addEventListener("dragstart", (event) => {
     if (!icon.hasAttribute("data-dropped")) {
       event.dataTransfer.setData("text", icon.id);
     }
     event.dataTransfer.effectAllowed = "copy";
   });
+
   icon.addEventListener("dragend", () => {
-    icon.removeAttribute("data-cloned");
     icon.removeAttribute("data-dropped");
   });
-  // icon.addEventListener("dragend", () => {
-  //   if (icon.hasAttribute("data-dropped")) {
-  //     return;
-  //   }
-  //   icon.parentNode.removeChild(icon);
-  // });
-  // if (icon.parentNode && icon.parentNode.classList.contains("garden-cell")) {
-  //   return;
-  // }
-  // icon.parentNode.removeChild(icon);
 }
 
 function makeDroppable(cell) {
   cell.addEventListener("dragover", (event) => {
     event.preventDefault();
+    event.dataTransfer.dropEffect = cell.querySelector(".garden-icon")
+      ? "none"
+      : "copy";
     cell.classList.add("highlight");
   });
 
@@ -44,23 +41,13 @@ function makeDroppable(cell) {
       const draggableElement = document.getElementById(draggableId);
       if (draggableElement && !cell.querySelector(".garden-icon")) {
         const isCloned = draggableElement.hasAttribute("data-cloned");
-        const clonedElement = isCloned
-          ? draggableElement
-          : draggableElement.cloneNode(true);
-        cell.appendChild(clonedElement);
-        clonedElement.removeAttribute("data-cloned");
-        makeDraggable(clonedElement);
         if (!isCloned) {
-          draggableElement.setAttribute("data-dropped", "true");
+          const clonedElement = draggableElement.cloneNode(true);
+          clonedElement.setAttribute("data-cloned", "true");
+          cell.appendChild(clonedElement);
+          makeDraggable(clonedElement);
         }
       }
-    }
-  });
-
-  cell.addEventListener("dragstart", (event) => {
-    const icon = event.target.closest(".garden-icon");
-    if (icon) {
-      icon.setAttribute("data-dropped", "true");
     }
   });
 }
@@ -69,19 +56,10 @@ gardenIcons.forEach(makeDraggable);
 
 gardenCells.forEach((cell) => {
   makeDroppable(cell);
-  cell.addEventListener("dragleave", () => {
-    const draggable = document.querySelector(".garden-icon");
-    if (draggable) {
-      const draggableRect = draggable.getBoundingClientRect();
-      const cellRect = cell.getBoundingClientRect();
-      if (
-        draggableRect.right < cellRect.left ||
-        draggableRect.left > cellRect.right ||
-        draggableRect.bottom < cellRect.top ||
-        draggableRect.top > cellRect.bottom
-      ) {
-        cell.classList.remove("highlight");
-      }
+  cell.addEventListener("dblclick", (event) => {
+    const icon = cell.querySelector(".garden-icon");
+    if (icon) {
+      icon.remove();
     }
   });
 });
