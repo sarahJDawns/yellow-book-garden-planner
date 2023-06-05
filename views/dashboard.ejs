@@ -1,114 +1,95 @@
 <%- include('partials/header-auth') %>
 
-<div class="container">
-  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg">
+<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center mx-auto">
 
-    <div class="flex flex-row items-center justify-between mb-4 rounded bg-gray-50 dark:bg-gray-800">
-
-      <div class="flex flex-col">
-        <div class="text-lg from-neutral-400" id="date"></div>
-        <div class="text-lg from-neutral-400" id="location"></div>
-        <div class="text-lg from-neutral-400" id="time"></div>
+  <div class="container flex flex-row px-8 pt-6 pb-8 w-full mt-10">
+    <!-- search -->
+    <section class="container flex flex-col mt-5 flex-1">
+      <div class="flex flex-row">
+        <i class="fa-solid fa-magnifying-glass text-lightPurple bg-lightGray rounded-l p-3 "></i>
+        <input class="block text-sm font-bold font-heading bg-lightGray border-none rounded-r h-10 w-full py-2 px-3 leading-tight caret-lightPurple focus:border-brightBlue focus:outline-none" id="searchInput" type="text" />
       </div>
+      <button class="w-full mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none mx-auto justify-center" onclick="getWeatherData()">
+        Search
+      </button>
+    </section>
 
-      <div class="flex flex-col">
-        <div class="bg-slate-300 p-3 rounded-sm">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input class="flex-1 ml-2" id="searchInput" type="text" />
-          <button class="bg-orange-300 p-3 rounded-sm my-1 cursor-pointer hover:bg-slate-400" onclick="getWeatherData()">
-            Search
-          </button>
-        </div>
-        <div class=">
-          <div class=" text-lg my-2">Today Overview</div>
-        <div class="flex flex-row justify-center mt-3">
-          <div class="h-4 w-4 mr-2">
-            <img src="" alt="weather icon" id="weatherIcon" />
-          </div>
-          <div class="flex-1">
-            <span class="flex flex-row justify-between text-center" id="currentTemp"></span>
-            <span class="text-lg">˚F</span>
-            <div class="text-lg" id="weatherDescription">
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col bg-slate-300 rounded-sm py-1">
-          <div class="pr-1">
-            <i class="text-purple-400 fa-solid fa-temperature-half"></i>
-          </div>
-          <div class="w-full">
-            <div class="text-lg from-neutral-400">Lowest / Highest</div>
-            <div class="flex flex-end w-full">
-              <span class="flex-3">
-                <span class="text-lg from-neutral-400" id="lowestToday"></span>
-                <span class="text-lg from-neutral-400">˚F</span>
-                <span> / </span>
-                <span class="text-lg from-neutral-400" id="highestToday"></span>
-                <span class="text-lg from-neutral-400">˚F</span>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="text-lg font-stone-300">Sunrise & Sunset</div>
-        <div class="flex flex-col justify-center mt-3 bg-orange-400 p-2 rounded-sm border border-sky-300">
-          <div class="text-purple-400"><i class="fa-solid fa-sun"></i></div>
-          <div class="flex-1">
-            <div class="text-lg font-stone-300">Sunrise</div>
-            <div class="font-bold" id="sunrise"></div>
-          </div>
-          <div class="font-bold" id="sunriseRelative"></div>
-        </div>
-        <div class="flex flex-col justify-center mt-3 bg-orange-400 p-2 rounded-sm border border-sky-300">
-          <div class="text-purple-400"><i class="fa-solid fa-moon"></i></div>
-          <div class="flex-1">
-            <div class="text-lg font-stone-300">Sunset</div>
-            <div class="font-bold" id="sunset"></div>
-          </div>
-          <div class="font-bold" id="sunsetRelative"></div>
-        </div>
-        <div class="overviewProp">
-          <div class="flex-1">
-            <i class="text-purple-400 fa-solid fa-wind"></i>
-          </div>
-          <div class="flex-1">
-            <div class="text-lg">Wind</div>
-            <div class="flex flex-col">
-              <span class="flex flex-row">
-                <span class="text-lg" id="wind"></span>
-                <span class="text-lg">mph</span>
-              </span>
-              <span class="secondaryData" id="windDir"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- current info -->
+    <section class="container flex flex-col justify-center flex-1">
+      <h2 class="uppercase font-heading font-bold" id="date"></h2>
+      <h2 class="uppercase font-heading font-bold" id="location"></h2>
+      <h2 class="uppercase font-heading font-bold" id="time"></h2>
+    </section>
   </div>
 
-  <div class="flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
-    <section id="plant">
-      <div class="">
-        <div>
-          <h3 class="pb-1 mx-1 my-3 border-b border-gray-300">Plant Hardiness Zone</h3>
+  <div class="flex flex-row container">
+    <!-- zone -->
+    <section class="container flex flex-col justify-center items-center my-10 flex-1">
+      <div id="plant" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
+        <div class="my-5 pb-5">
+          <h2 class="uppercase font-heading font-bold border-b border-darkGray">Plant Hardiness Zone</h2>
         </div>
-        <div>
-          <div>
-            <div>
-              <p class="pt-3">Find your zone</p>
-              <input class="bg-blue-50 caret-purple-600 px-4 py-3 rounded-full border-2 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="code" type="text" placeholder="Enter Zip Code" />
-            </div>
+        <div class="flex flex-col">
+          <div class="mb-4">
+            <p class="block text-sm font-bold mb-2 font-heading">Find your zone</p>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="code" type="text" placeholder="Enter Zip Code" />
           </div>
-          <button id="zone" class="flex-flex-row w-full p-3 px-6 pt-2 mt-4 mx-auto font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700 md:justify-center md:items-center md:w-1/3">
+        </div>
+        <div class="flex flex-col my-5 w-full">
+          <button id="zone" class="w-full mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto justify-center">
             Find
           </button>
-          <div class="pb-5">
-            <p class="pb-3">You are in zone</p>
-            <p id="zone-display"></p>
-          </div>
+        </div>
+        <div class="mb-4">
+          <p class=" pb-3 block text-sm font-bold font-heading">You are in zone</p>
+          <p id="zone-display" class="block text-sm font-bold font-heading bg-lightGray border-none rounded h-10 w-full py-2 px-3 leading-tight"></p>
         </div>
       </div>
     </section>
+    <!-- temperature -->
+    <section class="container flex flex-col justify-center items-center my-10 flex-1">
+      <div class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
+        <div class="my-5 pb-5">
+          <h2 class="uppercase font-heading font-bold border-b border-darkGray">Today Overview</h2>
+        </div>
+        <div class="flex flex-row my-2">
+          <img src="#" alt="weather icon" id="weatherIcon" class="h-10 w-10 mr-2 bg-lightPurple rounded-full" />
+          <span class="text-lg items-center" id="weatherDescription">
+          </span>
+        </div>
+        <div class="flex flex-row items-center my-2">
+          <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+            <i class="text-darkPinkOrange fa-solid fa-temperature-half"></i>
+          </div>
+          <span class="flex flex-row justify-between text-center items-center" id="currentTemp"></span>
+          <span class="text-lg items-center ml-1">˚F</span>
+        </div>
+        <div class="flex flex-row items-center my-2">
+          <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+            <i class="bg-lightPurple rounded-full text-darkPinkOrange fa-solid fa-wind"></i>
+          </div>
+          <span class="text-lg items-center">Wind</span>
+          <span class="text-lg items-center ml-2" id="wind"></span>
+          <span class="text-lg items-center mr-2 ml-1">mph</span>
+          <span class="items-center" id="windDir"></span>
+        </div>
+        <div class="flex flex-row items-center my-2">
+          <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+            <i class="text-darkPinkOrange fa-solid fa-sun"></i>
+          </div>
+          <span class="text-lg items-center">Sunrise</span>
+          <span class="ml-2" id="sunrise"></span>
+        </div>
+        <div class="flex flex-row items-center my-2">
+          <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+            <i class="text-darkPinkOrange fa-solid fa-moon"></i>
+          </div>
+          <span class="text-lg items-center">Sunset</span>
+          <span class="ml-2" id="sunset"></span>
+        </div>
+    </section>
   </div>
-</div>
+
+</main>
 
 <%- include('partials/footer') -%>

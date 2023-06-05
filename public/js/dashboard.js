@@ -23,12 +23,8 @@ const weatherIcon = document.getElementById("weatherIcon");
 const weatherDescription = document.getElementById("weatherDescription");
 const windSpeed = document.getElementById("wind");
 const windDirection = document.getElementById("windDir");
-const lowestToday = document.getElementById("lowestToday");
-const highestToday = document.getElementById("highestToday");
 const sunrise = document.getElementById("sunrise");
 const sunset = document.getElementById("sunset");
-const sunriseRelative = document.getElementById("sunriseRelative");
-const sunsetRelative = document.getElementById("sunsetRelative");
 const userLocation = document.getElementById("location");
 const time = document.getElementById("time");
 const date = document.getElementById("date");
@@ -99,8 +95,6 @@ const updateDom = (data) => {
   weatherDescription.innerText = data[0].weather[0].main;
   windSpeed.innerText = data[0].wind.speed.toFixed(1);
   windDirection.innerText = getDirection(data[0].wind.deg);
-  lowestToday.innerText = Math.round(data[0].main.temp_min);
-  highestToday.innerText = Math.round(data[0].main.temp_max);
 
   const sunriseTs = new Date(data[0].sys.sunrise * 1000);
   const sunsetTs = new Date(data[0].sys.sunset * 1000);

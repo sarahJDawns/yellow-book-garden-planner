@@ -1,12 +1,25 @@
-<footer class="flex flex-col items-center px-6 mx-auto bg-slate-100">
+<footer class="flex flex-col items-center px-6 mx-auto bg-bkgd text-darkGreen font-heading">
 
-  <h5 class="font-bold text-slate-700 text-2xl py-10">Sprout your socializing</h5>
-  <div class="container text-slate-700 text-center mb-4 w-full md:text-left">
-    <span>Copyright &copy; 2022, All Rights Reserved</span>
+  <div class="container flex flex-col w-full justify-center md:flex-row mx-auto mt-3 mb-3">
+    <div class="justify-center flex flex-row pt-2 md:justify-start">
+      <a href="https://twitter.com/sjdawns" target="_blank">
+        <i class="fa-brands fa-twitter px-1 text-darkPinkOrange hover:text-lightPurple" title="Twitter"></i>
+      </a>
+      <a href="https://github.com/sarahJDawns" target="_blank">
+        <i class="fa-brands fa-github px-1 text-darkPinkOrange hover:text-lightPurple" title="GitHub"></i>
+      </a>
+      <a href="https://sarahjdawns.netlify.app/" target="_blank">
+        <i class="fa-solid fa-star px-1 text-darkPinkOrange hover:text-lightPurple" title="Portfolio"></i>
+      </a>
+    </div>
+    <div class="flex flex-col mx-auto w-full pt-2 md:flex-row md:justify-end">
+      <p class="flex flex-row justify-center text-xs px-3">Community Grown</p>
+      <p class="flex flex-row justify-center text-xs px-3">&copy; Sarah J Dawns 2022, All Rights Reserved</p>
+    </div>
   </div>
 
-  <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-purple-600 hover:bg-purple-700 text-slate-100 text-lg font-semibold transition-colors duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+  <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-lightPurple hover:bg-darkPinkOrange text-lightGreen font-bold transition-colors duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="lightGreen" class="w-6 h-6">
       <path d="M12 4l8 8h-6v8h-4v-8H4l8-8z" />
     </svg>
     <span class="sr-only">Go to top</span>

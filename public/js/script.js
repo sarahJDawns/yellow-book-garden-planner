@@ -37,21 +37,34 @@ if (toTopButton) {
 //* sidebar
 
 document.addEventListener("DOMContentLoaded", function () {
-  const sidebar = document.getElementById("separator-sidebar");
-  const sidebarToggleOpen = document.getElementById("sidebar-toggle-open");
-  const sidebarToggleClose = document.getElementById("sidebar-toggle-close");
+  if (document.querySelector("#separator-sidebar")) {
+    const sidebar = document.getElementById("separator-sidebar");
+    const sidebarToggleOpen = document.getElementById("sidebar-toggle-open");
+    const sidebarToggleClose = document.getElementById("sidebar-toggle-close");
 
-  sidebarToggleOpen.addEventListener("click", function () {
-    sidebar.classList.add("open");
-    sidebarToggleOpen.style.display = "none";
-    sidebarToggleClose.style.display = "inline-block";
-  });
+    sidebarToggleOpen.addEventListener("click", function () {
+      sidebar.classList.add("open");
+      sidebarToggleOpen.style.display = "none";
+      sidebarToggleClose.style.display = "inline-block";
+    });
 
-  sidebarToggleClose.addEventListener("click", function () {
-    sidebar.classList.remove("open");
-    sidebarToggleOpen.style.display = "inline-block";
-    sidebarToggleClose.style.display = "none";
-  });
+    sidebarToggleClose.addEventListener("click", function () {
+      sidebar.classList.remove("open");
+      sidebarToggleOpen.style.display = "inline-block";
+      sidebarToggleClose.style.display = "none";
+    });
+    function updateCloseButtonVisibility() {
+      if (sidebar.classList.contains("open")) {
+        sidebarToggleClose.style.display = "inline-block";
+      } else {
+        sidebarToggleClose.style.display = "none";
+      }
+    }
+
+    updateCloseButtonVisibility();
+
+    window.addEventListener("resize", updateCloseButtonVisibility);
+  }
 });
 
 //* calculator page

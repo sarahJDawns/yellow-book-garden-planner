@@ -1,62 +1,61 @@
 <%- include('partials/header-auth') %>
 
-<div class="bg-slate-100 flex flex-col mx-auto p-6 ">
-  <div class="container flex flex-col justify-center items-center mx-auto p-6 md:w-2/3">
+<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center w-full mx-auto">
+  <section class="container flex flex-col justify-center items-center p-6 mt-10 sm:w-2/3 md:w-1/2">
     <% if (locals.messages.errors) { %>
     <% messages.errors.forEach((el) => { %>
-    <div class="text-xl text-red-700 font-bold mx-auto text-center">
+    <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
       <%= el.msg %>
     </div>
     <% }) %>
     <% } %>
-    <div class="container mt-5">
-      <h2 class="text-slate-700 font-bold text-xl mb-5">Add a post</h2>
-      <form action="/notes/createNotes" enctype="multipart/form-data" method="POST">
-        <div class="text-slate-700 flex flex-col mb-8 mt-15">
-          <label for="title" class="mb-3">Title</label>
-          <input type="text" class="bg-blue-50  caret-purple-600 px-4 py-3 rounded-full border-2 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="title" name="title" maxlength="100">
-        </div>
-        <div class="text-slate-700 flex flex-col mb-8 mt-15">
-          <label for="caption" class=" mb-3">Caption</label>
-          <input class="bg-blue-50  caret-purple-600 px-4 py-3 rounded-full border-2 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="caption" name="caption" maxlength="100"></input>
-        </div>
-        <div class="mb-3 flex flex-col mt-15">
-          <label for="imgUpload" class="mb-3">Image</label>
-          <div class="px-4 py-2 rounded-full border-2 border-cyan-800 ">
-            <input type="file" class="bg-blue-50 w-11/12 file:mr-3 file:px-4 file:py-2
-          file:rounded-full file:border-0
-          file:text-sm file:font-semibold
-          file:bg-blue-100 file:text-blue-500
-          hover:file:bg-blue-200" id="imageUpload" name="file">
-          </div>
-        </div>
-        <div class="flex flex-row mt-5  md:justify-center 
-      md:items-center">
-          <button type="submit" class="flex-flex-row w-full p-3 px-6 pt-2 mt-4 mx-auto font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700 md:justify-center md:items-center md:w-1/3" value="Upload">Post!</button>
-        </div>
-      </form>
+    <form action="/notes/createNotes" enctype="multipart/form-data" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
+      <div class="my-5 pb-4">
+        <h2 class="uppercase font-heading font-bold border-b border-darkGray">Add a post</h2>
+      </div>
+      <div class="mb-4">
+        <label for="title" class="block text-sm font-bold mb-2 font-heading">Title</label>
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="title" name="title" maxlength="100">
+      </div>
+      <div class="mb-4">
+        <label for="caption" class="block text-sm font-bold mb-2 font-heading">Caption</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="caption" name="caption" maxlength="100"></input>
+      </div>
+      <div class="mb-4">
+        <label for="imgUpload" class="block text-sm font-bold mb-2 font-heading">Image</label>
+        <input type="file" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="imageUpload" name="file">
+      </div>
+      <div class="flex flex-col py-5">
+        <button type="submit" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
+          " value="Upload">Post!</button>
+      </div>
+    </form>
+  </section>
+  <section class="container flex flex-col justify-center items-center p-6 mt-5 sm:w-2/3 md:w-1/2">
+    <div class="mb-4 w-full">
+      <h3 class="border-b border-darkGray uppercase font-heading font-bold text-left w-full">Notes</h3>
     </div>
-  </div>
-  <div class="container flex flex-col mb-8 mt-8 mx-auto p-6 md:w-2/3">
-    <ul>
+    <ul class="w-full">
       <% notes.sort(function(a, b) { return new Date(b.createdAt) - new Date(a.createdAt); }); %>
       <% for(let i=0; i<notes.length; i++) {%>
-      <li class="bg-blue-50 flex flex-col break-words mb-8 mt-15 border border-cyan-700 rounded px-4 pt-2">
-        <h2 class="text-slate-700 font-bold mb-2 mx-5 text-xl"><%= notes[i].title%></h2>
+      <li class="bg-accent shadow-md rounded p-2 pb-0 w-full break-words mt-5">
+        <h2 class="uppercase font-heading font-bold"><%= notes[i].title%></h2>
         <% if (notes[i].image) { %>
         <img class="object-cover rounded w-full h-52" src="<%= notes[i].image%>">
         <% } %>
-        <p class="text-slate-700 mt-2 mx-2"><%= notes[i].caption%></p>
-        <p class="text-slate-700 text-right text-xs mb-2"><%= notes[i].createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
-        <form action="/notes/deleteNotes/<%= notes[i]._id %>?_method=DELETE" method="POST" class="flex flex-row justify-end">
-          <button class="mr-2 mt-2" type="submit">
-            <i class="fa-solid fa-trash-can text-blue-500"></i>
-          </button>
-        </form>
+        <p class="block text-sm mt-2 mx-2 my-2"><%= notes[i].caption%></p>
+        <div class="flex flex-row mt-2 justify-end">
+          <p class="align-text-bottom text-xs mr-3"><%= notes[i].createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+          <form action="/notes/deleteNotes/<%= notes[i]._id %>?_method=DELETE" method="POST" class="flex flex-row">
+            <button type="submit">
+              <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
+            </button>
+          </form>
+        </div>
       </li>
       <%}%>
     </ul>
-  </div>
-</div>
+  </section>
+</main>
 
 <%- include('partials/footer') -%>

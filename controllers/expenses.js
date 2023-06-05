@@ -4,12 +4,12 @@ module.exports = {
   getExpenses: async (req, res) => {
     console.log(req.user);
     try {
-      const expenses = await Expenses.find({ user: req.user.id });
+      const expenses = await Expenses.find({ user: req.user });
       res.render("expenses.ejs", {
         expenses: expenses,
         count: expenses.length,
         data: expenses,
-        user: req.user.id,
+        user: req.user,
       });
     } catch (err) {
       console.log(err);
@@ -22,7 +22,7 @@ module.exports = {
       await Expenses.create({
         text: req.body.text,
         amount: parseFloat(req.body.amount),
-        user: req.user._id,
+        user: req.user,
       });
       console.log("Expenses has been added!");
       res.redirect("/expenses");
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   deleteExpenses: async (req, res) => {
-    console.log(req.user._id);
+    console.log(req.user);
     try {
       await Expenses.deleteOne({
         _id: req.params.id,

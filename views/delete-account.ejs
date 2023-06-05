@@ -1,48 +1,51 @@
 <%- include('partials/header-auth') %>
 
-<main class="bg-slate-100 flex flex-col items-center justify-center p-6 w-full mx-auto">
-  <div class="container flex flex-col justify-center items-center p-6 sm:w-2/3 md:w-1/2">
+<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center h-screen w-full mx-auto">
+  <section class="container flex flex-col justify-center items-center p-6 sm:w-2/3 md:w-1/2">
     <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-    <div class="flex-col text-xl pb-3 text-red-700 font-bold mx-auto text-center">
+    <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
       <%= el.msg %>
     </div>
     <% }) %> <% } %>
     <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
-    <div class="text-xl pb-5 text-red-700 font-bold mx-auto text-center">
+    <section class="text-xl pb-5 text-alert font-bold mx-auto text-center">
       <%= el.msg %>
-    </div>
-    <% }) %> <% } %>
-    <% if (!(messages.info && messages.info.length)) { %>
-    <form action="/delete-account" method="POST">
-      <div class="flex flex-col mb-8 mt-15">
-        <label for="userName" class="my-3 text-slate-700">User Name</label>
-        <input type="text" class="bg-blue-50 px-4 py-3 rounded-full border-2 caret-purple-600 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="userName" name="userName" />
       </div>
-      <div class="flex flex-col my-8">
-        <label for="exampleInputEmail1" class="mb-3 text-slate-700">Email address</label>
-        <input type="email" class="bg-blue-50 px-4 py-3 rounded-full border-2 caret-purple-600 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" />
-        <div>
+      <% }) %> <% } %>
+      <% if (!(messages.info && messages.info.length)) { %>
+      <form action="/delete-account" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
+        <div class="my-5 pb-5">
           <% if (locals.messages.info) { %>
-          <p class="text-lg py-8 text-slate-700 font-bold mx-auto text-center">Thank you for participating!</p>
+          <h2 class="uppercase font-heading font-bold border-b border-darkGray">>Thank you for participating!</h2>
           <% } else { %>
-          <p class="text-lg py-8 text-slate-700 font-bold mx-auto text-center">Please enter your information for account deletion.</p>
+          <h2 class="uppercase font-heading font-bold border-b border-darkGray">Please enter your info to delete account</h2>
           <% } %>
         </div>
-      </div>
-      <div class="flex flex-col mb-8 mt-15">
-        <label for="password" class="mb-3 text-slate-700">Password</label>
-        <input type="password" class="bg-blue-50 px-4 py-3 rounded-full border-2 caret-purple-600 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="password" name="password" />
-      </div>
-      <div class="flex flex-col mb-8 mt-15">
-        <label for="confirmPassword" class="mb-3 text-slate-700">Confirm Password</label>
-        <input type="password" class="bg-blue-50 px-4 py-3 rounded-full border-2 caret-purple-600 border-cyan-800 focus:border-blue-500 focus:outline-none focus:bg-blue-100" id="confirmPassword" name="confirmPassword" />
-      </div>
-      <button type="submit" class="flex flex-row mx-auto mt-8 p-3 px-6 pt-2 font-bold text-slate-100 bg-cyan-600 rounded-full baseline hover:bg-cyan-700">
-        Delete Account
-      </button>
-    </form>
-    <% } %>
-  </div>
+        <div class="mb-4">
+          <label for="userName" class="block text-sm font-bold mb-2 font-heading">User Name</label>
+          <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="userName" name="userName" placeholder="User Name" />
+        </div>
+        <div class="mb-4">
+          <label for="exampleInputEmail1" class="block text-sm font-bold mb-2 font-heading">Email address</label>
+          <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Email" />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-bold mb-2 font-heading">Password</label>
+          <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************" />
+        </div>
+        <div class="mb-4">
+          <label for="confirmPassword" class="block text-sm font-bold mb-2 font-heading">Confirm Password</label>
+          <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="confirmPassword" name="confirmPassword" placeholder="******************" />
+        </div>
+        <div class="flex flex-col pt-6 mb-5">
+          <button type="submit" class="mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
+        ">
+            Delete Account!
+          </button>
+        </div>
+      </form>
+      <% } %>
+    </section>
 </main>
 
 <%- include('partials/footer') -%>
