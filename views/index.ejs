@@ -1,74 +1,238 @@
 <%- include('partials/header-guest') %>
 
-<div class="bg-bkgd">
-  <section>
-    <div class="container flex flex-col-reverse md:flex-row items-center px-6 mx-auto space-y-0 md:space-y-0">
-      <div class="flex flex-col mb-32 space-y-12 md:w-1/2 px-6">
-        <h1 class="max-w-md text-4xl font-bold text-center text-slate-700 mt-12 md:text-5xl md:text-left">
-          A place to grow, share, connect.
-        </h1>
-        <p class="max-w-sm text-center text-slate-600 md:text-left">
-          From discovering new friends to sharing photos of your harvest, we are a community invested in supporting your growing adventure.
-        </p>
+<main class="bg-bkgd text-darkGray">
+  <section class="container pt-10">
+    <div class="bg-lightOrange shadow-md rounded-lg w-full px-8">
+      <div class="w-full pt-14">
+        <h1 class="w-full text-4xl font-bold font-heading text-center">
+          Welcome to</h1>
+        <h1 class="py-5 text-darkGreen w-full text-4xl font-bold font-heading text-center">Yellow Book: Garden Planner!</h1>
       </div>
-      <div class="container md:w-1/2 px-6">
-        <div class="flex flex-col md:justify-center md:items-center">
-          <a href="/login" class="flex flex-row w-full mx-auto mt-24 p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center md:mt-6 md:w-1/3">
-            Login</a>
-          <a href="/signup" class="flex flex-row w-full mx-auto mt-24 p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center md:mt-6 md:w-1/3">
-            Join Us</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:space-y-0">
-      <h2 class="text-5xl font-bold text-center text-slate-100 md:text-4xl md:max-w-xl md:text-left">
-        How it works
-      </h2>
-      <div class="flex flex-col mb-32 px-8 space-y-12 md:flex-row md:justify-between">
-        <div class="flex flex-col mt-16 md:w-1/3 md:mt-12">
-          <div class="flex items-center space-x-2">
-            <div class="px-4 py-2 slate-100 rounded-full font-bold text-slate-100 bg-purple-600 md:py-1">
-              01
-            </div>
-            <h3 class="text-slate-700 font-bold text-lg ">
-              Join us and log in
-            </h3>
-          </div>
-          <p class="text-slate-600 pl-12">
-            Requires a user name, email, and password.
+      <div class="flex flex-col-reverse items-center mx-auto md:flex-row md:container">
+        <div class="flex flex-col md:w-1/2 md:pt-12">
+          <p class="text-lg text-center md:text-left md:mr-20">
+            Grow your dream garden with ease and precision. Our web app is designed to streamline your gardening experience, providing you with a comprehensive set of tools and features to plan, track, and optimize your gardening journey.
           </p>
-        </div>
-        <div class="flex flex-col mt-16 md:w-1/3">
-          <div class="flex items-center space-x-2">
-            <div class="px-4 py-2 font-bold text-slate-100 rounded-full md:py-1 bg-purple-600">
-              02
-            </div>
-            <h3 class="text-slate-700 font-bold  text-lg">
-              Create a post
-            </h3>
+          <div class="flex flex-col py-10 container md:w-1/2">
+            <a href="/login" class="flex w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+              Login!</a>
+            <a href="/signup" class="flex w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+              Join Us!</a>
           </div>
-          <p class="text-slate-600 pl-12">
-            Share a heading, an image, a caption, or comment on a post.
-          </p>
         </div>
-        <div class="flex flex-col mt-16 md:w-1/3">
-          <div class="flex items-center space-x-2">
-            <div class="px-4 py-2 font-bold text-slate-100 rounded-full md:py-1 bg-purple-600">
-              03
-            </div>
-            <h3 class="text-slate-700 font-bold text-lg">
-              Like and delete
-            </h3>
+        <div class="px-5 p-10 md:w-1/2">
+          <div class="flex flex-col">
+            <img src="/images/gardening.png" alt="lady gardening">
           </div>
-          <p class="text-slate-600 pl-12">
-            Like others' posts & captions. Delete your own.
-          </p>
         </div>
       </div>
     </div>
   </section>
-</div>
+  <section class="md:flex md:flex-row">
+    <div class="container mt-10 md:w-1/2 md:mt-24 md:pt-20">
+      <div class="bg-lightOrange shadow-md rounded-lg w-full px-8">
+        <div class="w-full pt-10">
+          <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center">
+            Visualize Your Garden with Drag & Drop
+          </h1>
+        </div>
+        <div class="flex flex-col-reverse items-center mx-auto">
+          <div class="flex flex-col">
+            <p class="text-lg text-center md:text-left md:container">
+              Bring your garden vision to life with our interactive Garden page. Drag and drop garden icons to create a digital mockup of your ideal garden layout. Experiment with different arrangements and visualize the perfect design before bringing it to life.
+            </p>
+            <div class="flex flex-col py-10 container md:w-1/2">
+              <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                Join Us!</a>
+            </div>
+          </div>
+          <div class="px-5 p-10">
+            <div class="flex flex-col">
+              <img src="/images/happy_news.png" alt="person taking notes">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="md:flex md:flex-col md:w-1/2">
+      <div class="container mt-10">
+        <div class="bg-lightGray shadow-md rounded-lg w-full px-8">
+          <div class="w-full pt-10">
+            <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center md:text-2xl">
+              Real-time Weather and Growing Zone
+            </h1>
+          </div>
+          <div class="flex flex-col-reverse items-center mx-auto md:flex-col">
+            <div class="flex flex-col">
+              <p class="text-lg text-center md:text-left md:container">
+                Stay informed about your local weather conditions and growing zone right from your dashboard. Our app integrates the latest weather data, ensuring that you make informed decisions for your plants.
+              </p>
+              <div class="flex flex-col py-10 container md:hidden">
+                <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                  Join Us!</a>
+              </div>
+            </div>
+            <div class="px-5 p-10 md:pb-10">
+              <div class="flex flex-col">
+                <img src="/images/weather_app.png" alt="weather app" class="md:w-64 md:h-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-10">
+        <div class="bg-accent shadow-md rounded-lg w-full px-8">
+          <div class="w-full pt-10">
+            <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center md:text-2xl">
+              Seamless Seed/Plant Spacing Calculations
+            </h1>
+          </div>
+          <div class="flex flex-col-reverse items-center mx-auto md:flex-col">
+            <div class="flex flex-col">
+              <p class="text-lg text-center md:text-left md:container">
+                Optimize your garden layout with our intuitive Seed/Plant Calculator. Determine the ideal spacing for your seeds or plants to maximize growth and yield. Our calculator takes the guesswork out of spacing, allowing you to plan with precision.
+              </p>
+              <div class="flex flex-col py-10 container md:hidden">
+                <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                  Join Us!</a>
+              </div>
+            </div>
+            <div class="px-5 p-10 md:pb-10">
+              <div class="flex flex-col">
+                <img src="/images/outdoors.png" alt="person planting plants">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="md:flex md:flex-row">
+    <div class="md:flex md:flex-col md:w-1/2">
+      <div class="container mt-10">
+        <div class="bg-lightGray shadow-md rounded-lg w-full px-8">
+          <div class="w-full pt-10">
+            <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center md:text-2xl">
+              Effortless Note Taking
+            </h1>
+          </div>
+          <div class="flex flex-col-reverse items-center mx-auto md:flex-col">
+            <div class="flex flex-col">
+              <p class="text-lg text-center md:text-left md:container">
+                Keep track of your gardening progress and insights with our intuitive Notes page. Jot down your thoughts, observations, and gardening tips to refer back to whenever you need. Easily access and review your previous notes for ongoing reference.
+              </p>
+              <div class="flex flex-col py-10 container md:hidden">
+                <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                  Join Us!</a>
+              </div>
+            </div>
+            <div class="px-5 p-10">
+              <div class="flex flex-col md:pb-10">
+                <img src="/images/random_thoughts.png" alt="notes on tree" class="md:w-64 md:h-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-10">
+        <div class="bg-accent shadow-md rounded-lg w-full px-8">
+          <div class="w-full pt-10">
+            <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center md:text-2xl">
+              Organize Tasks with Kanban Boards
+            </h1>
+          </div>
+          <div class="flex flex-col-reverse items-center mx-auto md:flex-col">
+            <div class="flex flex-col">
+              <p class="text-lg text-center md:text-left md:container">
+                Stay on top of your gardening tasks with our interactive Kanban page. View, move, and add tasks effortlessly, ensuring that you never miss a beat. Manage your to-do list, prioritize tasks, and monitor your progress all in one place.
+              </p>
+              <div class="flex flex-col py-10 container md:hidden">
+                <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                  Join Us!</a>
+              </div>
+            </div>
+            <div class="px-5 p-10 md:pb-10">
+              <div class="flex flex-col">
+                <img src="/images/thought_process.png" alt="notes on board" class="md:w-64 md:h-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="md:flex md:flex-col md:w-1/2">
+      <div class="container mt-10">
+        <div class="bg-lightOrange shadow-md rounded-lg w-full px-8">
+          <div class="w-full pt-10">
+            <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center md:text-2xl">
+              Track Garden Expenses
+            </h1>
+          </div>
+          <div class="flex flex-col-reverse items-center mx-auto md:flex-col">
+            <div class="flex flex-col">
+              <p class="text-lg text-center md:text-left md:container">
+                Keep your gardening budget in check with our Expense page. Log and monitor all your garden-related expenses in one convenient location. Stay informed about your spending and make informed decisions to optimize your gardening investments.
+              </p>
+              <div class="flex flex-col py-10 container md:hidden">
+                <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                  Join Us!</a>
+              </div>
+            </div>
+            <div class="px-5 p-10">
+              <div class="flex flex-col">
+                <img src="/images/counting_stars.png" alt="people counting stars" class="md:w-64 md:h-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-10">
+        <div class="bg-lightGray shadow-md rounded-lg w-full px-8">
+          <div class="w-full pt-10">
+            <h1 class="py-5 font-heading text-darkGreen w-full text-4xl font-bold text-center md:text-2xl">
+              Account Management Made Simple
+            </h1>
+          </div>
+          <div class="flex flex-col-reverse items-center mx-auto md:flex-col">
+            <div class="flex flex-col">
+              <p class="text-lg text-center md:text-left md:container">
+                If you ever decide to part ways, we provide hassle-free account deletion. Your privacy and control over your data are important to us, and we respect your decision to delete your account. We're always here to assist you if you change your mind.
+              </p>
+              <div class="flex flex-col py-10 container md:hidden">
+                <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+                  Join Us!</a>
+              </div>
+            </div>
+            <div class="px-5 p-10">
+              <div class="flex flex-col">
+                <img src="/images/throw_away.png" alt="person dropping something in trash" class="md:w-64 md:h-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container mt-10">
+    <div class="bg-lightOrange shadow-md rounded-lg w-full  px-8">
+      <div class="flex flex-col items-center mx-auto pt-10 md:flex-row md:container">
+        <div class="flex flex-col md:w-1/2 md:pt-12">
+          <p class="text-lg text-center md:text-left md:mr-20">
+            <span class="text-darkGreen font-bold uppercase font-heading">Yellow Book: Garden Planner</span> empowers you to create and maintain a beautiful garden, no matter your skill level. Sign up today and unlock the full potential of your gardening journey. Let's make your dream garden a reality!
+          </p>
+        </div>
+        <div class="flex flex-col md:px-5 md:p-10 md:w-1/2">
+          <p class="text-lg text-center pt-10 md:text-left">
+            Start planning your garden today with <span class="text-darkGreen font-bold uppercase font-heading">Yellow Book: Garden Planner!</span> Sign up now and get ready to grow!
+          </p>
+          <div class="flex flex-col py-10 container md:w-1/2">
+            <a href="/signup" class="flex flex-row w-full mx-auto p-3 mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center">
+              Join Us!</a>
+          </div>
+        </div>
+      </div>
+  </section>
+  </div>
 
-<%- include('partials/footer') -%>
+  <%- include('partials/footer') -%>
