@@ -1,61 +1,64 @@
 <%- include('partials/header-auth') %>
 
 <main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center w-full mx-auto">
+  <div class="container flex flex-col">
+    <div class="flex flex-col items-center justify-center mx-auto bg-lightOrange shadow-md rounded-lg w-full px-8 py-28">
 
-  <section id="expenses" class="container flex flex-col justify-center items-center p-6 mt-10 w-full sm:w-2/3 md:w-1/2">
-    <div class="flex w-full my-3 p-3 bg-accent shadow-md rounded">
-      <div class="flex flex-col flex-1 border-r border-darkGray text-center">
-        <h4 class="uppercase font-heading font-bold">Total</h4>
-      </div>
-      <div class="flex flex-col flex-1">
-        <span class="flex flex-row justify-center">$<h1 id="total" class="uppercase font-heading font-bold"></h1></span>
-      </div>
-    </div>
-
-    <form id="expenses-form" action="/expenses/addExpenses" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full mt-10">
-      <div class="my-5 pb-4">
-        <h2 class="uppercase font-heading font-bold border-b border-darkGray">Add new expense</h2>
-      </div>
-      <div class="mb-4">
-        <label for="text" class="block text-sm font-bold mb-2 font-heading">Text</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" type="text" id="text" name="text" placeholder="Enter text..." required>
-      </div>
-      <div class="mb-4">
-        <label for="amount" class="block text-sm font-bold mb-2 font-heading">Amount</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" type="number" id="amount" name="amount" placeholder="Enter amount..." required>
-      </div>
-      <div class="flex flex-col py-5">
-        <button id="add" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center" type="submit">Add transaction</button>
-      </div>
-    </form>
-  </section>
-
-  <section class="container flex flex-col items-center p-6 mt-5 w-full sm:w-2/3 md:w-1/2">
-    <div class="pb-4 w-full">
-      <h3 class="border-b border-darkGray uppercase font-heading font-bold text-left w-full">History</h3>
-    </div>
-    <ul id="list" class="w-full">
-      <% expenses.forEach((expenses) => { %>
-      <li class="bg-accent shadow-md rounded p-2 pb-0 w-full break-words mt-5">
-        <div class="flex flex-row w-full justify-start mt-3">
-          <p class="flex-2 text-left mx-10"><%= expenses.text %></p>
-          <div class="border-r border-darkGray"></div>
-          <p class="flex-1 mx-10">$<span><%= expenses.amount %></span></p>
-        </div>
-        <div class="flex flex-row mt-2 justify-end">
-          <p class="align-text-bottom text-xs mr-3 "><%= expenses.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
-          <form action="/expenses/deleteExpenses/<%= expenses._id %>?_method=DELETE" method="POST" class="flex flex-row">
-            <button type="submit">
-              <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
-            </button>
-          </form>
+      <section id="expenses" class="flex flex-col justify-center items-center p-6 mt-10 w-full md:w-3/4">
+        <div class="flex w-full my-3 p-3 bg-accent shadow-md rounded">
+          <div class="flex flex-col flex-1 border-r border-darkGray text-center">
+            <h4 class="uppercase font-heading font-bold">Total</h4>
+          </div>
+          <div class="flex flex-col flex-1">
+            <span class="flex flex-row justify-center">$<h1 id="total" class="uppercase font-heading font-bold"></h1></span>
+          </div>
         </div>
 
-      </li>
-      <% }); %>
-    </ul>
-  </section>
+        <form id="expenses-form" action="/expenses/addExpenses" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full mt-10">
+          <div class="my-5 pb-4">
+            <h2 class="uppercase font-heading font-bold border-b border-darkGray">Add new expense</h2>
+          </div>
+          <div class="mb-4">
+            <label for="text" class="block text-sm font-bold mb-2 font-heading">Text</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" type="text" id="text" name="text" placeholder="Enter text..." required>
+          </div>
+          <div class="mb-4">
+            <label for="amount" class="block text-sm font-bold mb-2 font-heading">Amount</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" type="number" id="amount" name="amount" placeholder="Enter amount..." required>
+          </div>
+          <div class="flex flex-col py-5">
+            <button id="add" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center" type="submit">Add transaction</button>
+          </div>
+        </form>
+      </section>
 
+      <section class="flex flex-col items-center p-6 mt-5 w-full md:w-3/4">
+        <div class="pb-4 w-full">
+          <h3 class="border-b border-darkGray uppercase font-heading font-bold text-left w-full">History</h3>
+        </div>
+        <ul id="list" class="w-full">
+          <% expenses.forEach((expenses) => { %>
+          <li class="bg-accent shadow-md rounded p-2 pb-0 w-full break-words mt-5">
+            <div class="flex flex-row w-full justify-start mt-3">
+              <p class="flex-2 text-left mx-10"><%= expenses.text %></p>
+              <div class="border-r border-darkGray"></div>
+              <p class="flex-1 mx-10">$<span><%= expenses.amount %></span></p>
+            </div>
+            <div class="flex flex-row mt-2 justify-end">
+              <p class="align-text-bottom text-xs mr-3 "><%= expenses.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+              <form action="/expenses/deleteExpenses/<%= expenses._id %>?_method=DELETE" method="POST" class="flex flex-row">
+                <button type="submit">
+                  <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
+                </button>
+              </form>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+
+    </div>
+  </div>
 </main>
 
 <%- include('partials/footer') -%>

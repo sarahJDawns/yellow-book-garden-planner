@@ -1,46 +1,60 @@
 <%- include('partials/header-guest') %>
 
-<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center h-screen w-full mx-auto">
-  <section class="container flex flex-col justify-center items-center p-6 sm:w-2/3 md:w-1/2">
-    <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-    <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
+<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center w-full mx-auto">
+  <section class="container my-10">
+    <div class="flex flex-col justify-center text-center container w-full mx-auto pb-10">
+      <h2 class="my-10 font-heading text-darkPinkOrange w-full text-4xl font-bold text-center uppercase">Account Management Made Simple</h2>
     </div>
-    <% }) %> <% } %> <% if (locals.messages.info) { %> <%
-      messages.info.forEach( el => { %>
-    <div class="flex-col text-xl pb-5 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
+    <div class="flex flex-col bg-lightYellow shadow-md rounded-lg w-full px-8 py-10 md:flex-row">
+      <div class="md:container md:w-1/2">
+        <div class="flex flex-col items-center mx-auto py-10 md:pt-12 md:h-full md:justify-center">
+          <p class="text-lg text-center md:text-left md:container md:leading-loose">
+            If you ever decide to part ways, we provide hassle-free account deletion. Your<span class="text-darkPinkOrange uppercase font-heading font-bold"> privacy </span>and<span class="text-darkPinkOrange uppercase font-heading font-bold"> control </span>over your data are important to us, and we<span class="text-darkPinkOrange uppercase font-heading font-bold"> respect </span>your decision to delete your account. We're<span class="text-darkPinkOrange uppercase font-heading font-bold"> always </span>here to assist you if you change your mind.
+          </p>
+        </div>
+      </div>
+      <div class="md:container flex flex-col justify-center items-center w-full md:p-6 md:w-1/2">
+        <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+        <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
+          <%= el.msg %>
+        </div>
+        <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+          messages.info.forEach( el => { %>
+        <div class="flex-col text-xl pb-5 text-alert font-bold mx-auto text-center">
+          <%= el.msg %>
+        </div>
+        <% }) %> <% } %>
+        <form action="/signup" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
+          <div class="my-5 pb-1">
+            <h2 class="uppercase font-heading font-bold border-b border-darkGray">Sign up for an account
+            </h2>
+            <p class="font-heading font-bold  normal-case text-xs ml-5 mb-4 text-vDarkBlue mt-2"> - We'll never share your email.</p>
+          </div>
+          <div class="mb-4">
+            <label for="userName" class="block text-sm font-bold mb-2 font-heading">User Name</label>
+            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="userName" name="userName" placeholder="User Name" />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-bold mb-2 font-heading">Email address</label>
+            <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="email" name="email" placeholder="Email" />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="block text-sm font-bold mb-2 font-heading">Password</label>
+            <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************" />
+          </div>
+          <div class="mb-4">
+            <label for="confirmPassword" class="block text-sm font-bold mb-2 font-heading">Confirm Password</label>
+            <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="confirmPassword" name="confirmPassword" placeholder="******************" />
+          </div>
+          <div class="flex flex-col py-5">
+            <button type="submit" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
+            ">
+              Sign Up!
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    <% }) %> <% } %>
-    <form action="/signup" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-      <div class="my-5 pb-1">
-        <h2 class="uppercase font-heading font-bold border-b border-darkGray">Sign up for an account
-        </h2>
-        <p class="font-heading font-bold  normal-case text-xs ml-5 mb-4 text-vDarkBlue mt-2"> - We'll never share your email.</p>
-      </div>
-      <div class="mb-4">
-        <label for="userName" class="block text-sm font-bold mb-2 font-heading">User Name</label>
-        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="userName" name="userName" placeholder="User Name" />
-      </div>
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-bold mb-2 font-heading">Email address</label>
-        <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="email" name="email" placeholder="Email" />
-      </div>
-      <div class="mb-4">
-        <label for="password" class="block text-sm font-bold mb-2 font-heading">Password</label>
-        <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************" />
-      </div>
-      <div class="mb-4">
-        <label for="confirmPassword" class="block text-sm font-bold mb-2 font-heading">Confirm Password</label>
-        <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="confirmPassword" name="confirmPassword" placeholder="******************" />
-      </div>
-      <div class="flex flex-col py-5">
-        <button type="submit" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
-        ">
-          Sign Up!
-        </button>
-      </div>
-    </form>
   </section>
 </main>
 

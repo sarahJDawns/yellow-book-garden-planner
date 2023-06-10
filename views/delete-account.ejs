@@ -1,51 +1,53 @@
 <%- include('partials/header-auth') %>
 
-<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center h-screen w-full mx-auto">
-  <section class="container flex flex-col justify-center items-center p-6 sm:w-2/3 md:w-1/2">
-    <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-    <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
-    </div>
-    <% }) %> <% } %>
-    <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
-    <section class="text-xl pb-5 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
+<main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center w-full mx-auto">
+  <section class="container flex flex-col">
+    <div class="h-screen flex bg-lightYellow shadow-md rounded-lg w-full px-8 py-28 justify-center items-center">
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
+        <%= el.msg %>
       </div>
       <% }) %> <% } %>
-      <% if (!(messages.info && messages.info.length)) { %>
-      <form action="/delete-account" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-        <div class="my-5 pb-5">
-          <% if (locals.messages.info) { %>
-          <h2 class="uppercase font-heading font-bold border-b border-darkGray">>Thank you for participating!</h2>
-          <% } else { %>
-          <h2 class="uppercase font-heading font-bold border-b border-darkGray">Please enter your info to delete account</h2>
-          <% } %>
-        </div>
-        <div class="mb-4">
-          <label for="userName" class="block text-sm font-bold mb-2 font-heading">User Name</label>
-          <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="userName" name="userName" placeholder="User Name" />
-        </div>
-        <div class="mb-4">
-          <label for="exampleInputEmail1" class="block text-sm font-bold mb-2 font-heading">Email address</label>
-          <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Email" />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block text-sm font-bold mb-2 font-heading">Password</label>
-          <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************" />
-        </div>
-        <div class="mb-4">
-          <label for="confirmPassword" class="block text-sm font-bold mb-2 font-heading">Confirm Password</label>
-          <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="confirmPassword" name="confirmPassword" placeholder="******************" />
-        </div>
-        <div class="flex flex-col pt-6 mb-5">
-          <button type="submit" class="mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
+      <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
+      <section class="text-xl pb-5 text-alert font-bold mx-auto text-center">
+        <%= el.msg %>
+    </div>
+    <% }) %> <% } %>
+    <% if (!(messages.info && messages.info.length)) { %>
+    <form action="/delete-account" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-1/2">
+      <div class="my-5 pb-5">
+        <% if (locals.messages.info) { %>
+        <h2 class="uppercase font-heading font-bold border-b border-darkGray">>Thank you for participating!</h2>
+        <% } else { %>
+        <h2 class="uppercase font-heading font-bold border-b border-darkGray">Please enter your info to delete account</h2>
+        <% } %>
+      </div>
+      <div class="mb-4">
+        <label for="userName" class="block text-sm font-bold mb-2 font-heading">User Name</label>
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="userName" name="userName" placeholder="User Name" />
+      </div>
+      <div class="mb-4">
+        <label for="exampleInputEmail1" class="block text-sm font-bold mb-2 font-heading">Email address</label>
+        <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Email" />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-bold mb-2 font-heading">Password</label>
+        <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************" />
+      </div>
+      <div class="mb-4">
+        <label for="confirmPassword" class="block text-sm font-bold mb-2 font-heading">Confirm Password</label>
+        <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="confirmPassword" name="confirmPassword" placeholder="******************" />
+      </div>
+      <div class="flex flex-col pt-6 mb-5">
+        <button type="submit" class="mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
         ">
-            Delete Account!
-          </button>
-        </div>
-      </form>
-      <% } %>
-    </section>
+          Delete Account!
+        </button>
+      </div>
+    </form>
+    <% } %>
+    </div>
+  </section>
 </main>
 
 <%- include('partials/footer') -%>

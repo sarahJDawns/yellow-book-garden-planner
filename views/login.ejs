@@ -1,48 +1,50 @@
 <%- include('partials/header-guest') %>
 
 <main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center h-screen w-full mx-auto">
-  <section class="container flex flex-col justify-center items-center sm:w-2/3 md:w-1/2">
-    <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-    <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
-    </div>
-    <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+  <section class="container flex flex-col">
+    <div class="flex bg-lightYellow shadow-md rounded-lg w-full px-8 py-28 justify-center items-center">
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
+        <%= el.msg %>
+      </div>
+      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
       messages.info.forEach( el => { %>
-    <div class="text-xl pb-5 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
-    </div>
-    <% }) %> <% } %>
-    <form action="/login" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-      <div class="my-5 pb-5">
-        <h2 class="uppercase font-heading font-bold border-b border-darkGray">Sign in to your account</h2>
+      <div class="text-xl pb-5 text-alert font-bold mx-auto text-center">
+        <%= el.msg %>
       </div>
-      <div class="mb-4">
-        <label class="block text-sm font-bold mb-2 font-heading" for="email">
-          Email address
-        </label>
-        <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="email" name="email" placeholder="Email">
-      </div>
-      <div class="mb-6">
-        <label class="block text-sm font-bold mb-2 font-heading" for="password">
-          Password
-        </label>
-        <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************">
-      </div>
-      <div class="flex flex-col py-5">
-        <button type="submit" class="mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
+      <% }) %> <% } %>
+      <form action="/login" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full md:w-1/2">
+        <div class="my-5 pb-5">
+          <h2 class="uppercase font-heading font-bold border-b border-darkGray">Sign in to your account</h2>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-bold mb-2 font-heading" for="email">
+            Email address
+          </label>
+          <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="mb-6">
+          <label class="block text-sm font-bold mb-2 font-heading" for="password">
+            Password
+          </label>
+          <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="password" name="password" placeholder="******************">
+        </div>
+        <div class="flex flex-col py-5">
+          <button type="submit" class="mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
         ">
-          Sign In!
-        </button>
-        <p class="pt-5 text-xs">Don't have an account yet?<a class="inline-block align-baseline font-bold text-sm text-darkBlue hover:text-vDarkBlue ml-2" href="/signup">
-            Sign up
-          </a></p>
-        <p class="text-xs">Want a demo first?
-          <a class="inline-block align-baseline font-bold text-sm text-darkBlue hover:text-vDarkBlue ml-2" href="javascript:bypassLogin()">
-            Bypass Login
-          </a>
-        </p>
-      </div>
-    </form>
+            Sign In!
+          </button>
+          <p class="pt-5 text-xs">Don't have an account yet?<a class="inline-block align-baseline font-bold text-sm text-darkBlue hover:text-vDarkBlue ml-2" href="/signup">
+              Sign up
+            </a></p>
+          <p class="text-xs">Want a demo first?
+            <a class="inline-block align-baseline font-bold text-sm text-darkBlue hover:text-vDarkBlue ml-2" href="javascript:bypassLogin()">
+              Bypass Login
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
   </section>
 </main>
 

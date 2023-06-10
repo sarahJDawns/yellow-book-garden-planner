@@ -1,61 +1,65 @@
 <%- include('partials/header-auth') %>
 
 <main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center w-full mx-auto">
-  <section class="container flex flex-col justify-center items-center p-6 mt-10 sm:w-2/3 md:w-1/2">
-    <% if (locals.messages.errors) { %>
-    <% messages.errors.forEach((el) => { %>
-    <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
-      <%= el.msg %>
-    </div>
-    <% }) %>
-    <% } %>
-    <form action="/notes/createNotes" enctype="multipart/form-data" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-      <div class="my-5 pb-4">
-        <h2 class="uppercase font-heading font-bold border-b border-darkGray">Add a post</h2>
-      </div>
-      <div class="mb-4">
-        <label for="title" class="block text-sm font-bold mb-2 font-heading">Title</label>
-        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="title" name="title" maxlength="100">
-      </div>
-      <div class="mb-4">
-        <label for="caption" class="block text-sm font-bold mb-2 font-heading">Caption</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="caption" name="caption" maxlength="100"></input>
-      </div>
-      <div class="mb-4">
-        <label for="imgUpload" class="block text-sm font-bold mb-2 font-heading">Image</label>
-        <input type="file" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="imageUpload" name="file">
-      </div>
-      <div class="flex flex-col py-5">
-        <button type="submit" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
-          " value="Upload">Post!</button>
-      </div>
-    </form>
-  </section>
-  <section class="container flex flex-col justify-center items-center p-6 mt-5 sm:w-2/3 md:w-1/2">
-    <div class="mb-4 w-full">
-      <h3 class="border-b border-darkGray uppercase font-heading font-bold text-left w-full">Notes</h3>
-    </div>
-    <ul class="w-full">
-      <% notes.sort(function(a, b) { return new Date(b.createdAt) - new Date(a.createdAt); }); %>
-      <% for(let i=0; i<notes.length; i++) {%>
-      <li class="bg-accent shadow-md rounded p-2 pb-0 w-full break-words mt-5">
-        <h2 class="uppercase font-heading font-bold"><%= notes[i].title%></h2>
-        <% if (notes[i].image) { %>
-        <img class="object-cover rounded w-full h-52" src="<%= notes[i].image%>">
-        <% } %>
-        <p class="block text-sm mt-2 mx-2 my-2"><%= notes[i].caption%></p>
-        <div class="flex flex-row mt-2 justify-end">
-          <p class="align-text-bottom text-xs mr-3"><%= notes[i].createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
-          <form action="/notes/deleteNotes/<%= notes[i]._id %>?_method=DELETE" method="POST" class="flex flex-row">
-            <button type="submit">
-              <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
-            </button>
-          </form>
+  <div class="container flex flex-col">
+    <div class="flex flex-col items-center justify-center mx-auto bg-lightOrange shadow-md rounded-lg w-full px-8 py-28">
+      <section class="flex flex-col justify-center items-center w-full md:p-6 md:w-3/4">
+        <% if (locals.messages.errors) { %>
+        <% messages.errors.forEach((el) => { %>
+        <div class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center">
+          <%= el.msg %>
         </div>
-      </li>
-      <%}%>
-    </ul>
-  </section>
+        <% }) %>
+        <% } %>
+        <form action="/notes/createNotes" enctype="multipart/form-data" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
+          <div class="my-5 pb-4">
+            <h2 class="uppercase font-heading font-bold border-b border-darkGray">Add a Note</h2>
+          </div>
+          <div class="mb-4">
+            <label for="title" class="block text-sm font-bold mb-2 font-heading">Title</label>
+            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="title" name="title" maxlength="100">
+          </div>
+          <div class="mb-4">
+            <label for="caption" class="block text-sm font-bold mb-2 font-heading">Caption</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="caption" name="caption" maxlength="100"></input>
+          </div>
+          <div class="mb-4">
+            <label for="imgUpload" class="block text-sm font-bold mb-2 font-heading">Image</label>
+            <input type="file" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="imageUpload" name="file">
+          </div>
+          <div class="flex flex-col py-5">
+            <button type="submit" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center
+          " value="Upload">Capture!</button>
+          </div>
+        </form>
+      </section>
+      <section class="flex flex-col justify-center items-center w-full md:p-6 md:w-3/4">
+        <div class="mb-4 w-full">
+          <h3 class="border-b border-darkGray uppercase font-heading font-bold text-left w-full">Notes</h3>
+        </div>
+        <ul class="w-full">
+          <% notes.sort(function(a, b) { return new Date(b.createdAt) - new Date(a.createdAt); }); %>
+          <% for(let i=0; i<notes.length; i++) {%>
+          <li class="bg-accent shadow-md rounded p-2 pb-0 w-full break-words mt-5">
+            <h2 class="uppercase font-heading font-bold"><%= notes[i].title%></h2>
+            <% if (notes[i].image) { %>
+            <img class="object-cover rounded w-full h-52" src="<%= notes[i].image%>">
+            <% } %>
+            <p class="block text-sm mt-2 mx-2 my-2"><%= notes[i].caption%></p>
+            <div class="flex flex-row mt-2 justify-end">
+              <p class="align-text-bottom text-xs mr-3"><%= notes[i].createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+              <form action="/notes/deleteNotes/<%= notes[i]._id %>?_method=DELETE" method="POST" class="flex flex-row">
+                <button type="submit">
+                  <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
+                </button>
+              </form>
+            </div>
+          </li>
+          <%}%>
+        </ul>
+      </section>
+    </div>
+  </div>
 </main>
 
 <%- include('partials/footer') -%>
