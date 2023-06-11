@@ -97,24 +97,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //* calculator
 
+let inchesBetween, rowLength, numOfRows;
+
 if (document.querySelector("#calc-display")) {
-  let getCount = () => {
-    let inchesBetween = document.querySelector("#in-between").value;
-    let rowLength = document.querySelector("#length").value;
-    let numOfRows = document.querySelector("#rows").value;
-
-    let inches = rowLength * 12;
-    let seedPerRow = inches / inchesBetween;
-    let totalSeed = seedPerRow * numOfRows;
-
-    return totalSeed;
-  };
-
   let calculateButton = document.querySelector("#calculate");
+  let errMessage = document.querySelector("#error-message");
 
   calculateButton.addEventListener("click", () => {
-    let totalCount = getCount();
-    document.querySelector("#calc-display").innerText = totalCount;
+    inchesBetween = document.querySelector("#in-between").value;
+    rowLength = document.querySelector("#length").value;
+    numOfRows = document.querySelector("#rows").value;
+
+    if (inchesBetween !== "" && rowLength !== "" && numOfRows !== "") {
+      let inches = rowLength * 12;
+      let seedPerRow = inches / inchesBetween;
+      let totalSeed = seedPerRow * numOfRows;
+
+      document.querySelector("#calc-display").innerText = totalSeed;
+      errMessage.textContent = "";
+    } else {
+      errMessage.textContent = "All fields are required.";
+    }
   });
 }
 
@@ -187,6 +190,7 @@ function getDragAfterElement(category, y) {
 const expensesForm = document.querySelector("#expenses-form");
 const textInput = document.querySelector("#text");
 const amountInput = document.querySelector("#amount");
+const errorMessage = document.querySelector("#error-message");
 
 if (expensesForm && textInput && amountInput) {
   expensesForm.addEventListener("submit", (event) => {
@@ -194,12 +198,18 @@ if (expensesForm && textInput && amountInput) {
     expensesForm.submit();
   });
 
-  amountInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      expensesForm.submit();
-    }
-  });
+  if (isNaN(newAmount) || newText.trim() === "") {
+    // Display an error message or perform any necessary validation handling
+    console.error("Invalid amount or text value");
+    // return;
+  }
+
+  // amountInput.addEventListener("keydown", (event) => {
+  //   if (event.key === "Enter") {
+  //     event.preventDefault();
+  //     expensesForm.submit();
+  //   }
+  // });
 }
 
 if (document.querySelector("#expenses")) {

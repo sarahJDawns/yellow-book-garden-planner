@@ -140,8 +140,13 @@ function saveGarden() {
         throw new Error("Failed to save garden!");
       }
       console.log("Garden saved!");
+      document.getElementById("messages").textContent = "Garden saved!";
     })
-    .catch((error) => console.log("Failed to save garden!"));
+    .catch((error) => {
+      console.log("Failed to save garden!");
+      document.getElementById("messages").textContent =
+        "Failed to save garden!";
+    });
 }
 
 //* garden clear
@@ -158,11 +163,21 @@ function clearGarden() {
         throw new Error("Failed to clear garden!");
       }
       console.log("Garden cleared!");
+      document.getElementById("messages").textContent = "Garden cleared!";
 
       const gardenCells = document.querySelectorAll(".garden-cell");
       gardenCells.forEach((cell) => {
         cell.innerHTML = "";
       });
     })
-    .catch((error) => console.log("Failed to clear garden!"));
+    .catch((error) => {
+      console.log("Failed to clear garden!");
+      document.getElementById("messages").textContent =
+        "Failed to clear garden!";
+    });
 }
+
+document.addEventListener("click", () => {
+  let gardenMessages = document.getElementById("messages");
+  gardenMessages.textContent = "";
+});

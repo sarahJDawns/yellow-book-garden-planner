@@ -12,7 +12,7 @@ module.exports = {
       console.log("Garden fetched html:", garden);
     } catch (err) {
       console.log("Failed to retrieve garden!");
-      res.render("error.ejs");
+      res.render("garden.ejs");
     }
   },
 
@@ -45,6 +45,8 @@ module.exports = {
       } else {
         garden.cells = req.body.cells;
         await garden.save();
+
+        req.flash("info", { msg: "Garden saved successfully!" });
         console.log("Existing garden updated:", garden);
       }
       res.redirect("/garden");
@@ -60,6 +62,7 @@ module.exports = {
         { $unset: { cells: 1 } }
       );
 
+      req.flash("info", { msg: "Garden has been cleared!" });
       console.log("Garden cleared successfully!");
       res.redirect("/garden");
     } catch (err) {

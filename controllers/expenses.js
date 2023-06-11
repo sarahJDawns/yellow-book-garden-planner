@@ -4,7 +4,7 @@ module.exports = {
   getExpenses: async (req, res) => {
     console.log(req.user);
     try {
-      const expenses = await Expenses.find({ user: req.user });
+      const expenses = await Expenses.find({ user: req.user.id });
       res.render("expenses.ejs", {
         expenses: expenses,
         count: expenses.length,
@@ -22,8 +22,9 @@ module.exports = {
       await Expenses.create({
         text: req.body.text,
         amount: parseFloat(req.body.amount),
-        user: req.user,
+        user: req.user._id,
       });
+
       console.log("Expenses has been added!");
       res.redirect("/expenses");
     } catch (err) {
