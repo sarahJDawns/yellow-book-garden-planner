@@ -1,6 +1,6 @@
 ## Yellow Book: Garden Planner
 
-Keep track of your garden from seed to harvest. Calculate seed and plant spacing. Plan your garden with our drag and drop planner. Keep track of your expenses. Use the kanban board to make sure all your tasks are accounted for. Take photos and add notes. \* Coming soon: tag by crop or planting for more granular tracking.
+Keep track of your garden from seed to harvest. Calculate seed and plant spacing. Plan your garden with our drag and drop planner. Keep track of your expenses. Use the kanban board to make sure all your tasks are accounted for. Take photos and add notes.
 
 ---
 

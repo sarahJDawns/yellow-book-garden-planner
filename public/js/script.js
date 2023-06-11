@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sidebarToggleOpen.style.display = "inline-block";
       sidebarToggleClose.style.display = "none";
     });
+
     function updateCloseButtonVisibility() {
       if (sidebar.classList.contains("open")) {
         sidebarToggleClose.style.display = "inline-block";
@@ -96,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //* calculator
-
 let inchesBetween, rowLength, numOfRows;
 
 if (document.querySelector("#calc-display")) {
@@ -104,6 +104,18 @@ if (document.querySelector("#calc-display")) {
   let errMessage = document.querySelector("#error-message");
 
   calculateButton.addEventListener("click", () => {
+    performCalculation();
+  });
+
+  document.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        performCalculation();
+      }
+    });
+  });
+
+  function performCalculation() {
     inchesBetween = document.querySelector("#in-between").value;
     rowLength = document.querySelector("#length").value;
     numOfRows = document.querySelector("#rows").value;
@@ -114,11 +126,16 @@ if (document.querySelector("#calc-display")) {
       let totalSeed = seedPerRow * numOfRows;
 
       document.querySelector("#calc-display").innerText = totalSeed;
+
+      document.querySelector("#in-between").value = "";
+      document.querySelector("#length").value = "";
+      document.querySelector("#rows").value = "";
+
       errMessage.textContent = "";
     } else {
       errMessage.textContent = "All fields are required.";
     }
-  });
+  }
 }
 
 //* kanban add item
@@ -191,25 +208,41 @@ const expensesForm = document.querySelector("#expenses-form");
 const textInput = document.querySelector("#text");
 const amountInput = document.querySelector("#amount");
 const errorMessage = document.querySelector("#error-message");
-
 if (expensesForm && textInput && amountInput) {
   expensesForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    expensesForm.submit();
+    if (!validateInputs()) {
+      event.preventDefault();
+    }
   });
 
-  if (isNaN(newAmount) || newText.trim() === "") {
-    // Display an error message or perform any necessary validation handling
-    console.error("Invalid amount or text value");
-    // return;
+  function validateInputs() {
+    const text = textInput.value.trim();
+    const amount = parseFloat(amountInput.value);
+
+    if (text === "" || isNaN(amount)) {
+      errorMessage.textContent = "All fields are required.";
+      return false;
+    } else {
+      errorMessage.textContent = " ";
+      return true;
+    }
   }
 
-  // amountInput.addEventListener("keydown", (event) => {
-  //   if (event.key === "Enter") {
-  //     event.preventDefault();
-  //     expensesForm.submit();
-  //   }
-  // });
+  amountInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      if (!validateInputs()) {
+        event.preventDefault();
+      }
+    }
+  });
+
+  const addButton = document.querySelector("#add");
+  addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (validateInputs()) {
+      expensesForm.submit();
+    }
+  });
 }
 
 if (document.querySelector("#expenses")) {
