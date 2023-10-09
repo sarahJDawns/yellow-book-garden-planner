@@ -2,44 +2,44 @@
 
 <main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center mx-auto">
   <div class="container flex flex-col">
-    <div class="flex flex-col items-center justify-center mx-auto bg-lightOrange shadow-md rounded-lg w-full px-8 py-14">
+    <div class="bg-lightOrange py-14 flex flex-col items-center justify-center w-full px-8 mx-auto rounded-lg shadow-md">
       <!-- calculator -->
-      <section id="calculator" class="flex flex-col justify-center items-center w-full md:p-6 md:w-3/4">
-        <div class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-          <div class="my-5 pb-5">
-            <h2 class="uppercase font-heading font-bold border-b border-darkGray">Seed Calculator</h2>
+      <section id="calculator" class="md:p-6 md:w-3/4 flex flex-col items-center justify-center w-full">
+        <div class="bg-accent w-full px-8 pt-6 pb-8 rounded shadow-md">
+          <div class="pb-5 my-5">
+            <h2 class="font-heading border-darkGray font-bold uppercase border-b">Seed Calculator</h2>
           </div>
           <div class="flex flex-col">
             <div class="mb-4">
-              <p class="block text-sm font-bold mb-2 font-heading">Inches between seeds</p>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="in-between" type="text" placeholder="Enter Inches" />
+              <p class="font-heading block mb-2 text-sm font-bold">Inches between seeds</p>
+              <input class="focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none" id="in-between" type="text" placeholder="Enter Inches" />
             </div>
             <div class="mb-4">
-              <p class="block text-sm font-bold mb-2 font-heading">Length of row</p>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="length" type="text" placeholder="Enter Feet" />
+              <p class="font-heading block mb-2 text-sm font-bold">Length of row</p>
+              <input class="focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none" id="length" type="text" placeholder="Enter Feet" />
             </div>
             <div class="mb-4">
-              <p class="block text-sm font-bold mb-2 font-heading">Number of rows</p>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="rows" type="text" placeholder="Enter Total Rows" />
+              <p class="font-heading block mb-2 text-sm font-bold">Number of rows</p>
+              <input class="focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none" id="rows" type="text" placeholder="Enter Total Rows" />
             </div>
-            <div class="flex flex-col my-5 w-full">
-              <button id="calculate" class="w-full mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto justify-center">
+            <div class="flex flex-col w-full my-5">
+              <button id="calculate" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen focus:outline-none focus:shadow-outline justify-center w-full px-4 py-2 mx-auto mb-4 font-bold rounded">
                 Calculate!
               </button>
             </div>
             <div class="mb-4">
-              <p class=" pb-3 block text-sm font-bold font-heading">Total seeds or plants</p>
-              <p id="calc-display" class="block text-sm font-bold font-heading bg-lightGray border-none rounded h-10 w-full py-2 px-3 leading-tight"></p>
+              <p class=" font-heading block pb-3 text-sm font-bold">Total seeds or plants</p>
+              <p id="calc-display" class="font-heading bg-lightGray block w-full h-10 px-3 py-2 text-sm font-bold leading-tight border-none rounded"></p>
             </div>
-            <div id="error-message" class="flex-col text-xl py-3 text-alert font-bold mx-auto text-center"></div>
+            <div id="error-message" class="text-alert flex-col py-3 mx-auto text-xl font-bold text-center"></div>
           </div>
         </div>
       </section>
 
       <!-- table -->
-      <section class="flex flex-col justify-center items-center w-full p-6">
-        <div class="w-full container">
-          <h2 class="my-10 uppercase font-heading font-bold border-b border-darkGray">Spacing Table</h2>
+      <section class="flex flex-col items-center justify-center w-full p-6">
+        <div class="container w-full">
+          <h2 class="font-heading border-darkGray my-10 font-bold uppercase border-b">Spacing Table</h2>
           <div id="table"></div>
         </div>
       </section>

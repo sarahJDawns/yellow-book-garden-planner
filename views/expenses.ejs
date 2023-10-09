@@ -2,55 +2,55 @@
 
 <main class="bg-bkgd font-body text-darkGray flex flex-col items-center justify-center w-full mx-auto">
   <div class="container flex flex-col">
-    <div class="flex flex-col items-center justify-center mx-auto bg-lightOrange shadow-md rounded-lg w-full px-8 py-14">
+    <div class="bg-lightOrange py-14 flex flex-col items-center justify-center w-full px-8 mx-auto rounded-lg shadow-md">
 
-      <section id="expenses" class="flex flex-col justify-center items-center p-6 w-full md:w-3/4">
-        <div class="flex w-full my-3 p-3 bg-accent shadow-md rounded">
-          <div class="flex flex-col flex-1 border-r border-darkGray text-center">
-            <h4 class="uppercase font-heading font-bold">Total</h4>
+      <section id="expenses" class="md:w-3/4 flex flex-col items-center justify-center w-full p-6">
+        <div class="bg-accent flex w-full p-3 my-3 rounded shadow-md">
+          <div class="border-darkGray flex flex-col flex-1 text-center border-r">
+            <h4 class="font-heading font-bold uppercase">Total</h4>
           </div>
           <div class="flex flex-col flex-1">
-            <span class="flex flex-row justify-center">$<h1 id="total" class="uppercase font-heading font-bold"></h1></span>
+            <span class="flex flex-row justify-center">$<h1 id="total" class="font-heading font-bold uppercase"></h1></span>
           </div>
         </div>
 
-        <div id="error-message" class="flex-col text-xl pb-3 text-alert font-bold mx-auto text-center"></div>
+        <div id="error-message" class="text-alert flex-col pb-3 mx-auto text-xl font-bold text-center"></div>
 
-        <form id="expenses-form" action="/expenses/addExpenses" method="POST" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full mt-10">
-          <div class="my-5 pb-4">
-            <h2 class="uppercase font-heading font-bold border-b border-darkGray">Add new expense</h2>
+        <form id="expenses-form" action="/expenses/addExpenses" method="POST" class="bg-accent w-full px-8 pt-6 pb-8 mt-10 rounded shadow-md">
+          <div class="pb-4 my-5">
+            <h2 class="font-heading border-darkGray font-bold uppercase border-b">Add new expense</h2>
           </div>
           <div class="mb-4">
-            <label for="text" class="block text-sm font-bold mb-2 font-heading">Text</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" type="text" id="text" name="text" placeholder="Enter text..." required>
+            <label for="text" class="font-heading block mb-2 text-sm font-bold">Text</label>
+            <input class="focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none" type="text" id="text" name="text" placeholder="Enter text..." required>
           </div>
           <div class="mb-4">
-            <label for="amount" class="block text-sm font-bold mb-2 font-heading">Amount</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" type="number" id="amount" name="amount" placeholder="Enter amount..." required>
+            <label for="amount" class="font-heading block mb-2 text-sm font-bold">Amount</label>
+            <input class="focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none" type="number" id="amount" name="amount" placeholder="Enter amount..." required>
           </div>
           <div class="flex flex-col py-5">
-            <button id="add" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center" type="submit" value="Upload">Add transaction</button>
+            <button id="add" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen focus:outline-none focus:shadow-outline justify-center px-4 py-2 font-bold rounded" type="submit" value="Upload">Add transaction</button>
           </div>
         </form>
       </section>
 
-      <section class="flex flex-col items-center p-6 mt-5 w-full md:w-3/4">
-        <div class="pb-4 w-full">
-          <h3 class="border-b border-darkGray uppercase font-heading font-bold text-left w-full">History</h3>
+      <section class="md:w-3/4 flex flex-col items-center w-full p-6 mt-5">
+        <div class="w-full pb-4">
+          <h3 class="border-darkGray font-heading w-full font-bold text-left uppercase border-b">History</h3>
         </div>
         <ul id="list" class="w-full">
           <% expenses.sort((a, b) => b.createdAt - a.createdAt).forEach((expense) => { %>
-          <li class="bg-accent shadow-md rounded p-2 pb-0 w-full break-words mt-5">
-            <div class="flex flex-row w-full justify-start mt-3">
-              <p class="flex-2 text-left mx-10"><%= expense.text %></p>
-              <div class="border-r border-darkGray"></div>
+          <li class="bg-accent w-full p-2 pb-0 mt-5 break-words rounded shadow-md">
+            <div class="flex flex-row justify-start w-full mt-3">
+              <p class="flex-2 mx-10 text-left"><%= expense.text %></p>
+              <div class="border-darkGray border-r"></div>
               <p class="flex-1 mx-10">$<span><%= expense.amount %></span></p>
             </div>
-            <div class="flex flex-row mt-2 justify-end">
-              <p class="align-text-bottom text-xs mr-3 "><%= expense.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+            <div class="flex flex-row justify-end mt-2">
+              <p class=" mr-3 text-xs align-text-bottom"><%= expense.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
               <form action="/expenses/deleteExpenses/<%= expense._id %>?_method=DELETE" method="POST" class="flex flex-row">
                 <button type="submit">
-                  <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
+                  <i class="fa-solid fa-trash-can text-darkBlue hover:text-vDarkBlue mb-2 align-text-bottom"></i>
                 </button>
               </form>
             </div>

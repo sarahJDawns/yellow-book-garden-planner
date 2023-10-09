@@ -1,12 +1,15 @@
 //* bypass login
 
 function bypassLogin() {
+  // Set email and password variables
   const email = "tomato@10.com";
   const password = "tomato@10.com";
 
+  // Set the email and password input values
   document.querySelector('input[name="email"]').value = email;
   document.querySelector('input[name="password"]').value = password;
 
+  // Submit the form
   document.querySelector("form").submit();
 }
 
@@ -15,23 +18,22 @@ function bypassLogin() {
 let toTopButton = document.getElementById("to-top-button");
 
 if (toTopButton) {
-  window.onscroll = function () {
-    if (
-      document.body.scrollTop > 500 ||
-      document.documentElement.scrollTop > 500
-    ) {
-      toTopButton.classList.remove("hidden");
-    } else {
-      toTopButton.classList.add("hidden");
-    }
-  };
+window.onscroll = function() {
+  const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
-  window.goToTop = function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  if (scrollPosition > 500) {
+    toTopButton.classList.remove("hidden");
+  } else {
+    toTopButton.classList.add("hidden");
+  }
+};
+
+function goToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 }
 
 //* sidebar
@@ -54,13 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
       sidebarToggleClose.style.display = "none";
     });
 
-    function updateCloseButtonVisibility() {
-      if (sidebar.classList.contains("open")) {
-        sidebarToggleClose.style.display = "inline-block";
-      } else {
-        sidebarToggleClose.style.display = "none";
-      }
-    }
+function updateCloseButtonVisibility() {
+  const isOpen = sidebar.classList.contains("open");
+  sidebarToggleClose.style.display = isOpen ? "inline-block" : "none";
+}
 
     updateCloseButtonVisibility();
 
@@ -77,21 +76,19 @@ document.addEventListener("DOMContentLoaded", function () {
     Papa.parse("/csv/seedRateRange.csv", {
       header: true,
       download: true,
-      complete: function (results) {
-        const table = new Tabulator("#table", {
-          data: results.data,
-          layout: "fitColumns",
-          autoColumns: true,
-          autoWidth: true,
-          headerWordWrap: true,
-          headerSort: false,
-          headerVertical: "flip",
-          responsiveLayout: true,
-          columns: results.meta.fields.map(function (field) {
-            return { title: field, field: field };
-          }),
-        });
-      },
+complete: function(results) {
+  const table = new Tabulator("#table", {
+    data: results.data,
+    layout: "fitColumns",
+    autoColumns: true,
+    autoWidth: true,
+    headerWordWrap: true,
+    headerSort: false,
+    headerVertical: "flip",
+    responsiveLayout: true,
+    columns: results.meta.fields.map(field => ({ title: field, field })),
+  });
+}
     });
   }
 });
@@ -115,27 +112,28 @@ if (document.querySelector("#calc-display")) {
     });
   });
 
-  function performCalculation() {
-    inchesBetween = document.querySelector("#in-between").value;
-    rowLength = document.querySelector("#length").value;
-    numOfRows = document.querySelector("#rows").value;
+function performCalculation() {
+  const inchesBetween = document.querySelector("#in-between").value;
+  const rowLength = document.querySelector("#length").value;
+  const numOfRows = document.querySelector("#rows").value;
+  const errMessage = document.querySelector("#err-message");
 
-    if (inchesBetween !== "" && rowLength !== "" && numOfRows !== "") {
-      let inches = rowLength * 12;
-      let seedPerRow = inches / inchesBetween;
-      let totalSeed = seedPerRow * numOfRows;
+  if (inchesBetween !== "" && rowLength !== "" && numOfRows !== "") {
+    const inches = rowLength * 12;
+    const seedPerRow = inches / inchesBetween;
+    const totalSeed = seedPerRow * numOfRows;
 
-      document.querySelector("#calc-display").innerText = totalSeed;
+    document.querySelector("#calc-display").innerText = totalSeed;
 
-      document.querySelector("#in-between").value = "";
-      document.querySelector("#length").value = "";
-      document.querySelector("#rows").value = "";
+    document.querySelector("#in-between").value = "";
+    document.querySelector("#length").value = "";
+    document.querySelector("#rows").value = "";
 
-      errMessage.textContent = "";
-    } else {
-      errMessage.textContent = "All fields are required.";
-    }
+    errMessage.textContent = "";
+  } else {
+    errMessage.textContent = "All fields are required.";
   }
+}
 }
 
 //* kanban add item
@@ -185,21 +183,16 @@ kanbanCategories.forEach((category) => {
 });
 
 function getDragAfterElement(category, y) {
-  const draggableElements = [
-    ...category.querySelectorAll(".draggable:not(.dragging)"),
-  ];
-  return draggableElements.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
+  const draggableElements = Array.from(category.querySelectorAll(".draggable:not(.dragging)"));
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+
+    return offset < 0 && offset > closest.offset
+      ? { offset, element: child }
+      : closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
 //* expenses page
@@ -215,18 +208,14 @@ if (expensesForm && textInput && amountInput) {
     }
   });
 
-  function validateInputs() {
-    const text = textInput.value.trim();
-    const amount = parseFloat(amountInput.value);
+function validateInputs() {
+  const text = textInput.value.trim();
+  const amount = parseFloat(amountInput.value);
 
-    if (text === "" || isNaN(amount)) {
-      errorMessage.textContent = "All fields are required.";
-      return false;
-    } else {
-      errorMessage.textContent = " ";
-      return true;
-    }
-  }
+  const errorMessage = text === "" || isNaN(amount) ? "All fields are required." : " ";
+
+  return errorMessage === " ";
+}
 
   amountInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {

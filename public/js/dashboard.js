@@ -48,20 +48,11 @@ const monthNames = [
 const getWeatherData = async () => {
   try {
     const city = searchInput.value || getStoredLocation();
-    const currentWeather = new Promise(async (resolve, reject) => {
-      try {
-        const weatherApiData = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8109965e7254a469d08a746e8b210e1e&units=imperial`
-        );
-        resolve(await weatherApiData.json());
-        setStoredLocation(city);
-      } catch (error) {
-        console.log(error);
-        reject();
-      }
-    });
-    const data = await Promise.all([currentWeather]);
-    updateDom(data);
+    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8109965e7254a469d08a746e8b210e1e&units=imperial`;
+    const weatherApiData = await fetch(weatherApiUrl);
+    const weatherData = await weatherApiData.json();
+    setStoredLocation(city);
+    updateDom([weatherData]);
   } catch (error) {
     console.log(error);
   }
@@ -89,33 +80,24 @@ const getDirection = (deg) => {
 };
 
 const updateDom = (data) => {
-  console.log("updating", data);
-  currentTemperature.innerText = data[0].main.temp.toFixed(1);
-  weatherIcon.src = `https://openweathermap.org/img/wn/${data[0].weather[0].icon}@2x.png`;
-  weatherDescription.innerText = data[0].weather[0].main;
-  windSpeed.innerText = data[0].wind.speed.toFixed(1);
-  windDirection.innerText = getDirection(data[0].wind.deg);
+  const weather = data[0];
+  const sys = weather.sys;
+  const wind = weather.wind;
 
-  const sunriseTs = new Date(data[0].sys.sunrise * 1000);
-  const sunsetTs = new Date(data[0].sys.sunset * 1000);
+  currentTemperature.innerText = weather.main.temp.toFixed(1);
+  weatherIcon.src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+  weatherDescription.innerText = weather.weather[0].main;
+  windSpeed.innerText = wind.speed.toFixed(1);
+  windDirection.innerText = getDirection(wind.deg);
 
-  sunrise.innerText = sunriseTs.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  });
+  const sunriseTs = new Date(sys.sunrise * 1000);
+  const sunsetTs = new Date(sys.sunset * 1000);
 
-  sunset.innerText = sunsetTs.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  });
+  sunrise.innerText = sunriseTs.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" });
+  sunset.innerText = sunsetTs.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" });
 
-  userLocation.innerText = data[0].name;
-
-  time.innerText = new Date(Date.now()).toLocaleString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  });
-
+  userLocation.innerText = weather.name;
+  time.innerText = new Date(Date.now()).toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
   date.innerText = new Date(Date.now()).toLocaleString("en-US", {
     weekday: "long",
     month: "short",
@@ -132,13 +114,13 @@ const codeInput = document.querySelector("#code");
 const zoneButton = document.querySelector("#zone");
 
 const getZone = () => {
-  let code = codeInput.value || getStoredCode();
+  const code = codeInput.value || getStoredCode();
 
   fetch(`https://phzmapi.org/${code}.json`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.zone);
-      document.querySelector("#zone-display").innerText = data.zone;
+      const zone = data.zone;
+      document.querySelector("#zone-display").innerText = zone;
       setStoredCode(code);
     })
     .catch((err) => {

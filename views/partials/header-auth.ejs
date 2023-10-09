@@ -19,81 +19,81 @@
 
 <body>
   <header class="w-full mx-auto">
-    <div class="flex flex-row p-3 hover:via-vDarkGreen bg-bkgd font-heading h-16">
-      <div class="w-full flex flex-row justify-between relative pt-2 ">
-        <button id="sidebar-toggle-open" type="button" class="inline-flex items-left p-2 ml-10 text-sm text-darkGreen rounded-lg hover:text-vDarkGreen">
+    <div class="hover:via-vDarkGreen bg-bkgd font-heading flex flex-row h-16 p-3">
+      <div class=" relative flex flex-row justify-between w-full pt-2">
+        <button id="sidebar-toggle-open" type="button" class="items-left text-darkGreen hover:text-vDarkGreen inline-flex p-2 ml-10 text-sm rounded-lg">
           <i class="fa-solid fa-bars"></i>
         </button>
-        <h1 class="mx-auto mr-10 text-xl font-bold text-right text-darkGreen items-center absolute right-0 hover:text-vDarkGreen"><%= title %></h1>
+        <h1 class="text-darkGreen hover:text-vDarkGreen absolute right-0 items-center mx-auto mr-10 text-xl font-bold text-right"><%= title %></h1>
       </div>
-      <aside id="separator-sidebar" class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full bg-accent font-heading  text-darkGreen shadow-lg shadow-darkGray">
+      <aside id="separator-sidebar" class="bg-accent font-heading text-darkGreen shadow-darkGray fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full shadow-lg">
         <nav class="h-full px-3 py-4">
           <div class="flex flex-row">
-            <button id="sidebar-toggle-close" type="button" class="fixed w-full left-36 top-5 text-sm hover:text-vDarkGreen">
+            <button id="sidebar-toggle-close" type="button" class="left-36 top-5 hover:text-vDarkGreen fixed w-full text-sm">
               <i class="fa-solid fa-times"></i>
             </button>
-            <h1 class="mx-auto text-lg font-bold mt-6">Yellow Book: Garden Planner</h1>
+            <h1 class="mx-auto mt-6 text-lg font-bold">Yellow Book: Garden Planner</h1>
           </div>
           <ul class="mt-6 space-y-2">
             <li>
-              <a href="/dashboard" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-gears w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Dashboard</span>
+              <a href="/dashboard" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-gears text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Dashboard</span>
               </a>
             </li>
             <li>
-              <a href="/kanban" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-hammer w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Kanban</span>
+              <a href="/kanban" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-hammer text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Kanban</span>
               </a>
             </li>
             <li>
-              <a href="/notes" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-regular fa-note-sticky w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Notes</span>
+              <a href="/notes" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-regular fa-note-sticky text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Notes</span>
               </a>
             </li>
             <li>
-              <a href="/expenses" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-money-check-dollar w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Expenses</span>
+              <a href="/expenses" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-money-check-dollar text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Expenses</span>
               </a>
             </li>
             <li>
-              <a href="/garden" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-seedling w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Garden</span>
+              <a href="/garden" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-seedling text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Garden</span>
               </a>
             </li>
             <li>
-              <a href="/calculator" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-calculator w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Calculator</span>
+              <a href="/calculator" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-calculator text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Calculator</span>
               </a>
             </li>
           </ul>
-          <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-darkPinkOrange">
+          <ul class="border-darkPinkOrange pt-4 mt-4 space-y-2 font-medium border-t">
             <li>
-              <a href="/logout" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-door-open w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-4 hover:text-vDarkGreen">Logout</span>
+              <a href="/logout" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-door-open text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-4">Logout</span>
               </a>
             </li>
             <li>
-              <a href="/delete-account" class="flex items-center p-2 rounded-lg hover:bg-lightGray">
-                <i class="fa-solid fa-person-through-window w-5 h-5 text-darkPinkOrange"></i>
-                <span class="ml-3 hover:text-vDarkGreen">Delete Account</span>
+              <a href="/delete-account" class="hover:bg-lightGray flex items-center p-2 rounded-lg">
+                <i class="fa-solid fa-person-through-window text-darkPinkOrange w-5 h-5"></i>
+                <span class="hover:text-vDarkGreen ml-3">Delete Account</span>
               </a>
             </li>
             <li>
               <div class="flex items-center p-2 rounded-lg">
-                <i class="fa-solid fa-user-tag w-5 h-5 text-darkPinkOrange"></i>
+                <i class="fa-solid fa-user-tag text-darkPinkOrange w-5 h-5"></i>
                 <span class="ml-3">User Name: <%= user.userName %></span>
               </div>
             </li>
             <li>
               <div class="flex items-center p-2 rounded-lg">
-                <i class="fa-solid fa-user-ninja w-5 h-5 text-darkPinkOrange"></i>
+                <i class="fa-solid fa-user-ninja text-darkPinkOrange w-5 h-5"></i>
                 <span class="ml-3">Email: <%= user.email %></span>
               </div>
             </li>

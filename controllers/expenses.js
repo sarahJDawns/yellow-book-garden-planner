@@ -1,49 +1,45 @@
 const Expenses = require("../models/Expenses");
 
 module.exports = {
-  getExpenses: async (req, res) => {
-    console.log(req.user);
-    try {
-      const expenses = await Expenses.find({ user: req.user.id });
-      res.render("expenses.ejs", {
-        expenses: expenses,
-        count: expenses.length,
-        data: expenses,
-        user: req.user,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  },
+getExpenses: async (req, res) => {
+  try {
+    const userExpenses = await Expenses.find({ user: req.user.id });
+    res.render("expenses.ejs", {
+      expenses: userExpenses,
+      count: userExpenses.length,
+      data: userExpenses,
+      user: req.user,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+},
 
-  addExpenses: async (req, res) => {
-    console.log(req.user);
-    try {
-      await Expenses.create({
-        text: req.body.text,
-        amount: parseFloat(req.body.amount),
-        user: req.user._id,
-      });
+addExpenses: async (req, res) => {
+  try {
+    const { text, amount } = req.body;
+    const { _id } = req.user;
 
-      console.log("Expenses has been added!");
-      res.redirect("/expenses");
-    } catch (err) {
-      console.log(err);
-      res.redirect("/expenses");
-    }
-  },
+    await Expenses.create({
+      text,
+      amount: parseFloat(amount),
+      user: _id,
+    });
 
-  deleteExpenses: async (req, res) => {
-    console.log(req.user);
-    try {
-      await Expenses.deleteOne({
-        _id: req.params.id,
-      });
-      console.log("Deleted Expenses");
-      res.redirect("/expenses");
-    } catch (err) {
-      console.log(err);
-      res.redirect("/expenses");
-    }
-  },
+    res.redirect("/expenses");
+  } catch (err) {
+    console.log(err);
+    res.redirect("/expenses");
+  }
+},
+
+deleteExpenses: async (req, res) => {
+  try {
+    await Expenses.deleteOne({ _id: req.params.id });
+    res.redirect("/expenses");
+  } catch (err) {
+    console.log(err);
+    res.redirect("/expenses");
+  }
+},
 };

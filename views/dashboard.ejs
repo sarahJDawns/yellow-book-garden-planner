@@ -2,91 +2,91 @@
 
 <main class="bg-bkgd font-body text-darkGray">
   <div class="container flex flex-col">
-    <div class="items-center justify-center mx-auto bg-lightOrange shadow-md rounded-lg w-full px-8 py-28">
-      <div class="flex flex-row px-8 pt-6 pb-8 w-full mt-10">
+    <div class="bg-lightOrange py-28 items-center justify-center w-full px-8 mx-auto rounded-lg shadow-md">
+      <div class="flex flex-row w-full px-8 pt-6 pb-8 mt-10">
         <!-- search -->
-        <section class="container flex flex-col mt-5 flex-1">
+        <section class="container flex flex-col flex-1 mt-5">
           <div class="flex flex-row">
-            <i class="fa-solid fa-magnifying-glass text-lightPurple bg-lightGray rounded-l p-3 "></i>
-            <input class="block text-sm font-bold font-heading bg-lightGray border-none rounded-r h-10 w-full py-2 px-3 leading-tight caret-lightPurple focus:border-brightBlue focus:outline-none" id="searchInput" type="text" />
+            <i class="fa-solid fa-magnifying-glass text-lightPurple bg-lightGray p-3 rounded-l"></i>
+            <input class="font-heading bg-lightGray caret-lightPurple focus:border-brightBlue focus:outline-none block w-full h-10 px-3 py-2 text-sm font-bold leading-tight border-none rounded-r" id="searchInput" type="text" />
           </div>
-          <button class="w-full mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none mx-auto justify-center" onclick="getWeatherData()">
+          <button class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen focus:outline-none justify-center w-full px-4 py-2 mx-auto mb-4 font-bold rounded" onclick="getWeatherData()">
             Search
           </button>
         </section>
 
         <!-- current info -->
         <section class="container flex flex-col justify-center flex-1">
-          <h2 class="uppercase font-heading font-bold" id="date"></h2>
-          <h2 class="uppercase font-heading font-bold" id="location"></h2>
-          <h2 class="uppercase font-heading font-bold" id="time"></h2>
+          <h2 class="font-heading font-bold uppercase" id="date"></h2>
+          <h2 class="font-heading font-bold uppercase" id="location"></h2>
+          <h2 class="font-heading font-bold uppercase" id="time"></h2>
         </section>
       </div>
 
       <div class="flex flex-row">
         <!-- zone -->
-        <section class="container flex flex-col justify-center items-center my-10 flex-1">
-          <div id="plant" class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-            <div class="my-5 pb-5">
-              <h2 class="uppercase font-heading font-bold border-b border-darkGray">Plant Hardiness Zone</h2>
+        <section class="container flex flex-col items-center justify-center flex-1 my-10">
+          <div id="plant" class="bg-accent w-full px-8 pt-6 pb-8 rounded shadow-md">
+            <div class="pb-5 my-5">
+              <h2 class="font-heading border-darkGray font-bold uppercase border-b">Plant Hardiness Zone</h2>
             </div>
             <div class="flex flex-col">
               <div class="mb-4">
-                <p class="block text-sm font-bold mb-2 font-heading">Find your zone</p>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd" id="code" type="text" placeholder="Enter Zip Code" />
+                <p class="font-heading block mb-2 text-sm font-bold">Find your zone</p>
+                <input class="focus:shadow-outline caret-lightPurple border-darkGray focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none" id="code" type="text" placeholder="Enter Zip Code" />
               </div>
             </div>
-            <div class="flex flex-col my-5 w-full">
-              <button id="zone" class="w-full mb-4 bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto justify-center">
+            <div class="flex flex-col w-full my-5">
+              <button id="zone" class="bg-darkPinkOrange hover:bg-vDarkPinkOrange text-lightGreen focus:outline-none focus:shadow-outline justify-center w-full px-4 py-2 mx-auto mb-4 font-bold rounded">
                 Find
               </button>
             </div>
             <div class="mb-4">
-              <p class=" pb-3 block text-sm font-bold font-heading">You are in zone</p>
-              <p id="zone-display" class="block text-sm font-bold font-heading bg-lightGray border-none rounded h-10 w-full py-2 px-3 leading-tight"></p>
+              <p class=" font-heading block pb-3 text-sm font-bold">You are in zone</p>
+              <p id="zone-display" class="font-heading bg-lightGray block w-full h-10 px-3 py-2 text-sm font-bold leading-tight border-none rounded"></p>
             </div>
           </div>
         </section>
 
         <!-- temperature -->
-        <section class="container flex flex-col justify-center items-center my-10 flex-1">
-          <div class="bg-accent shadow-md rounded px-8 pt-6 pb-8 w-full">
-            <div class="my-5 pb-5">
-              <h2 class="uppercase font-heading font-bold border-b border-darkGray">Today Overview</h2>
+        <section class="container flex flex-col items-center justify-center flex-1 my-10">
+          <div class="bg-accent w-full px-8 pt-6 pb-8 rounded shadow-md">
+            <div class="pb-5 my-5">
+              <h2 class="font-heading border-darkGray font-bold uppercase border-b">Today Overview</h2>
             </div>
             <div class="flex flex-row my-2">
-              <img src="#" alt="weather icon" id="weatherIcon" class="h-10 w-10 mr-2 bg-lightPurple rounded-full" />
-              <span class="text-lg items-center" id="weatherDescription">
+              <img src="#" alt="weather icon" id="weatherIcon" class="bg-lightPurple w-10 h-10 mr-2 rounded-full" />
+              <span class="items-center text-lg" id="weatherDescription">
               </span>
             </div>
             <div class="flex flex-row items-center my-2">
-              <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+              <div class="bg-lightPurple flex items-center justify-center w-10 h-10 mr-2 rounded-full">
                 <i class="text-darkPinkOrange fa-solid fa-temperature-half"></i>
               </div>
-              <span class="flex flex-row justify-between text-center items-center" id="currentTemp"></span>
-              <span class="text-lg items-center ml-1">˚F</span>
+              <span class="flex flex-row items-center justify-between text-center" id="currentTemp"></span>
+              <span class="items-center ml-1 text-lg">˚F</span>
             </div>
             <div class="flex flex-row items-center my-2">
-              <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
-                <i class="bg-lightPurple rounded-full text-darkPinkOrange fa-solid fa-wind"></i>
+              <div class="bg-lightPurple flex items-center justify-center w-10 h-10 mr-2 rounded-full">
+                <i class="bg-lightPurple text-darkPinkOrange fa-solid fa-wind rounded-full"></i>
               </div>
-              <span class="text-lg items-center">Wind</span>
-              <span class="text-lg items-center ml-2" id="wind"></span>
-              <span class="text-lg items-center mr-2 ml-1">mph</span>
+              <span class="items-center text-lg">Wind</span>
+              <span class="items-center ml-2 text-lg" id="wind"></span>
+              <span class="items-center ml-1 mr-2 text-lg">mph</span>
               <span class="items-center" id="windDir"></span>
             </div>
             <div class="flex flex-row items-center my-2">
-              <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+              <div class="bg-lightPurple flex items-center justify-center w-10 h-10 mr-2 rounded-full">
                 <i class="text-darkPinkOrange fa-solid fa-sun"></i>
               </div>
-              <span class="text-lg items-center">Sunrise</span>
+              <span class="items-center text-lg">Sunrise</span>
               <span class="ml-2" id="sunrise"></span>
             </div>
             <div class="flex flex-row items-center my-2">
-              <div class="flex items-center justify-center h-10 w-10 mr-2 bg-lightPurple rounded-full">
+              <div class="bg-lightPurple flex items-center justify-center w-10 h-10 mr-2 rounded-full">
                 <i class="text-darkPinkOrange fa-solid fa-moon"></i>
               </div>
-              <span class="text-lg items-center">Sunset</span>
+              <span class="items-center text-lg">Sunset</span>
               <span class="ml-2" id="sunset"></span>
             </div>
         </section>

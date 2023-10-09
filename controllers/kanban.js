@@ -14,31 +14,32 @@ module.exports = {
       console.log(err);
     }
   },
-  createKanban: async (req, res) => {
-    try {
-      await Kanban.create({
-        item: req.body.item,
-        category: req.body.category,
-        user: req.user.id,
-        createdAt: new Date(),
-      });
-      console.log("Item has been added!");
-      res.redirect("/kanban");
-    } catch (err) {
-      console.log(err);
-      req.flash("errors", { msg: "Failed to add item!" });
-      res.redirect("/kanban");
-    }
-  },
+createKanban: async (req, res) => {
+  try {
+    const newItem = {
+      item: req.body.item,
+      category: req.body.category,
+      user: req.user.id,
+      createdAt: new Date(),
+    };
 
-  deleteKanban: async (req, res) => {
-    try {
-      await Kanban.deleteOne({ _id: req.params.id });
-      console.log("Deleted Item");
-      res.redirect("/kanban");
-    } catch (err) {
-      console.log(err);
-      res.redirect("/kanban");
-    }
-  },
+    await Kanban.create(newItem);
+
+    res.redirect("/kanban");
+  } catch (err) {
+    console.log(err);
+    req.flash("errors", { msg: "Failed to add item!" });
+    res.redirect("/kanban");
+  }
+},
+
+deleteKanban: async (req, res) => {
+  try {
+    await Kanban.deleteOne({ _id: req.params.id });
+    res.redirect("/kanban");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/kanban");
+  }
+},
 };

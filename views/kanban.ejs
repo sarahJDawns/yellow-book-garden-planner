@@ -1,26 +1,25 @@
 <%- include('partials/header-auth') %>
 
-<main class="flex flex-row bg-bkgd font-body text-darkGray w-full mx-auto">
-  <section class="container flex flex-row p-6 mt-10 min-h-screen">
-    <div class="category p-2 mx-1 w-1/4 bg-lightOrange rounded-md">
+<main class="bg-bkgd font-body text-darkGray flex flex-row w-full mx-auto">
+  <section class="container flex flex-row min-h-screen p-6 mt-10">
+    <div class="category bg-lightOrange w-1/4 p-2 mx-1 rounded-md">
       <div class="flex flex-col">
-        <h2 class="mb-3 uppercase font-heading font-bold border-b border-darkGray">To Do</h2>
-        <form id="todo-form" action="/kanban/createKanban" method="POST" class="mb-5 flex flex-row">
+        <h2 class="font-heading border-darkGray mb-3 font-bold uppercase border-b">To Do</h2>
+        <form id="todo-form" action="/kanban/createKanban" method="POST" class="flex flex-row mb-5">
           <input type="hidden" name="category" value="To Do">
-          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd">
-          <button type="submit" class="text-vDarkPinkOrange font-bold text-xs
-        ">+ Add</button>
+          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none">
+          <button type="submit" class="text-vDarkPinkOrange text-xs font-bold">+ Add</button>
         </form>
         <ul>
           <% kanban.forEach((item) => {
           if (item.category === 'To Do') { %>
-          <li class="bg-accent shadow-md rounded flex flex-col break-words mb-8 mt-15 border border-darkGray p-2 pb-0 draggable cursor-move" draggable="true">
+          <li class="bg-accent mt-15 border-darkGray draggable flex flex-col p-2 pb-0 mb-8 break-words border rounded shadow-md cursor-move" draggable="true">
             <p><%= item.item %></p>
             <div class="flex flex-row justify-end mt-2">
-              <p class="align-text-bottom text-xs mr-3"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+              <p class="mr-3 text-xs align-text-bottom"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
               <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row">
                 <button type="submit">
-                  <i class="fa-solid fa-trash-can mb-2 text-darkBlue hover:text-vDarkBlue align-text-bottom"></i>
+                  <i class="fa-solid fa-trash-can text-darkBlue hover:text-vDarkBlue mb-2 align-text-bottom"></i>
                 </button>
               </form>
             </div>
@@ -29,25 +28,24 @@
         </ul>
       </div>
     </div>
-    <div class="category p-2 mx-1 w-1/4 bg-lightOrange rounded-md">
+    <div class="category bg-lightOrange w-1/4 p-2 mx-1 rounded-md">
       <div class="flex flex-col">
-        <h2 class="mb-3 uppercase font-heading font-bold border-b border-darkGray">This Week</h2>
-        <form id="todo-form" action="/kanban/createKanban" method="POST" class="mb-5 flex flex-row">
+        <h2 class="font-heading border-darkGray mb-3 font-bold uppercase border-b">This Week</h2>
+        <form id="todo-form" action="/kanban/createKanban" method="POST" class="flex flex-row mb-5">
           <input type="hidden" name="category" value="This Week">
-          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd">
-          <button type="submit" class="text-vDarkPinkOrange font-bold text-xs
-          ">+ Add</button>
+          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none">
+          <button type="submit" class="text-vDarkPinkOrange text-xs font-bold">+ Add</button>
         </form>
         <ul>
           <% kanban.forEach((item) => {
           if (item.category === 'This Week') { %>
-          <li class="bg-accent shadow-md rounded flex flex-col break-words mb-8 mt-15 border border-darkGray p-2 pb-0 draggable cursor-move" draggable="true">
+          <li class="bg-accent mt-15 border-darkGray draggable flex flex-col p-2 pb-0 mb-8 break-words border rounded shadow-md cursor-move" draggable="true">
             <p><%= item.item %></p>
             <div class="flex flex-row justify-end mt-2">
-              <p class="align-text-bottom text-xs mr-3"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+              <p class="mr-3 text-xs align-text-bottom"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
               <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row">
                 <button type="submit">
-                  <i class="fa-solid fa-trash-can text-darkBlue mb-2 hover:text-vDarkBlue align-text-bottom"></i>
+                  <i class="fa-solid fa-trash-can text-darkBlue hover:text-vDarkBlue mb-2 align-text-bottom"></i>
                 </button>
               </form>
             </div>
@@ -56,25 +54,24 @@
         </ul>
       </div>
     </div>
-    <div class="category p-2 mx-1 w-1/4 bg-lightOrange rounded-md">
+    <div class="category bg-lightOrange w-1/4 p-2 mx-1 rounded-md">
       <div class="flex flex-col">
-        <h2 class="mb-3 uppercase font-heading font-bold border-b border-darkGray">Today</h2>
-        <form id="todo-form" action="/kanban/createKanban" method="POST" class="mb-5 flex flex-row">
+        <h2 class="font-heading border-darkGray mb-3 font-bold uppercase border-b">Today</h2>
+        <form id="todo-form" action="/kanban/createKanban" method="POST" class="flex flex-row mb-5">
           <input type="hidden" name="category" value="Today">
-          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd">
-          <button type="submit" class="text-vDarkPinkOrange font-bold text-xs
-          ">+ Add</button>
+          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none">
+          <button type="submit" class="text-vDarkPinkOrange text-xs font-bold">+ Add</button>
         </form>
         <ul>
           <% kanban.forEach((item) => {
           if (item.category === 'Today') { %>
-          <li class="bg-accent shadow-md rounded flex flex-col break-words mb-8 mt-15 border border-darkGray p-2 pb-0 draggable cursor-move" draggable="true">
+          <li class="bg-accent mt-15 border-darkGray draggable flex flex-col p-2 pb-0 mb-8 break-words border rounded shadow-md cursor-move" draggable="true">
             <p><%= item.item %></p>
             <div class="flex flex-row justify-end mt-2">
-              <p class="align-text-bottom text-xs mr-3"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+              <p class="mr-3 text-xs align-text-bottom"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
               <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row">
                 <button type="submit">
-                  <i class="fa-solid fa-trash-can text-darkBlue mb-2 hover:text-vDarkBlue align-text-bottom"></i>
+                  <i class="fa-solid fa-trash-can text-darkBlue hover:text-vDarkBlue mb-2 align-text-bottom"></i>
                 </button>
               </form>
             </div>
@@ -83,25 +80,24 @@
         </ul>
       </div>
     </div>
-    <div class="category p-2 mx-1 w-1/4 bg-lightOrange rounded-md">
+    <div class="category bg-lightOrange w-1/4 p-2 mx-1 rounded-md">
       <div class="flex flex-col">
-        <h2 class="mb-3 uppercase font-heading font-bold border-b border-darkGray">In Progress</h2>
-        <form id="todo-form" action="/kanban/createKanban" method="POST" class="mb-5 flex flex-row">
+        <h2 class="font-heading border-darkGray mb-3 font-bold uppercase border-b">In Progress</h2>
+        <form id="todo-form" action="/kanban/createKanban" method="POST" class="flex flex-row mb-5">
           <input type="hidden" name="category" value="In Progress">
-          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd">
-          <button type="submit" class="text-vDarkPinkOrange font-bold text-xs
-          ">+ Add</button>
+          <input id="todo-input" type="text" name="item" placeholder="Add item" required class="focus:shadow-outline caret-lightPurple border-darkPinkOrange focus:border-brightBlue focus:outline-none focus:bg-bkgd w-full px-3 py-2 leading-tight border rounded shadow appearance-none">
+          <button type="submit" class="text-vDarkPinkOrange text-xs font-bold">+ Add</button>
         </form>
         <ul>
           <% kanban.forEach((item) => {
           if (item.category === 'In Progress') { %>
-          <li class="bg-accent shadow-md rounded flex flex-col break-words mb-8 mt-15 border border-darkGray p-2 pb-0 draggable cursor-move" draggable="true">
+          <li class="bg-accent mt-15 border-darkGray draggable flex flex-col p-2 pb-0 mb-8 break-words border rounded shadow-md cursor-move" draggable="true">
             <p><%= item.item %></p>
             <div class="flex flex-row justify-end mt-2">
-              <p class="align-text-bottom text-xs mr-3"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+              <p class="mr-3 text-xs align-text-bottom"><%= item.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
               <form action="/kanban/deleteKanban/<%= item._id %>?_method=DELETE" method="POST" class="flex flex-row">
                 <button type="submit">
-                  <i class="fa-solid fa-trash-can text-darkBlue mb-2 hover:text-vDarkBlue align-text-bottom"></i>
+                  <i class="fa-solid fa-trash-can text-darkBlue hover:text-vDarkBlue mb-2 align-text-bottom"></i>
                 </button>
               </form>
             </div>
