@@ -27,18 +27,6 @@ Web app designed to streamline the gardening experience, providing a COMPREHENSI
 - [ ] Manage to-do list, prioritize tasks, and monitor progress with kanban board.
 - [ ] Log and monitor all garden-related expenses.
 
-## Pending Refinements
-
-1. Responsiveness
-2. Garden drag & drop improvement
-3. Save multiple gardens
-4. Sidebar menu improvement
-5. Add note input to dashboard
-6. Add today todo's to dash
-7. Tags for notes & expenses
-8. Tags are searchable
-9. Form to create crop plan
-
 ## Acknowledgments
 
 - [Open Weather Map API](https://openweathermap.org)
